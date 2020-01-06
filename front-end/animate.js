@@ -4,9 +4,17 @@ function animate() {
 }
 
 function openNav() {
-    document.getElementById("sidenav").style.width = "250px"
+    document.getElementById("sideNav").style.width = "250px"
 }
 
 function closeNav() {
-    document.getElementById("sidenav").style.width = "0"
+    document.getElementById("sideNav").style.width = "0"
+}
+
+function openModal() {
+    document.getElementById("loginModal").style.display = "block"
+}
+
+function closeModal() {
+    document.getElementById("loginModal").style.display = "none"
 }

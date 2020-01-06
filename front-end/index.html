@@ -11,12 +11,8 @@
 
     <body>
         <header>
-            <div id="sidenav" class="sidenav">
-                <a
-                    href="javascript:void(0)"
-                    class="closebtn"
-                    onclick="closeNav()"
-                >
+            <div id="sideNav" class="sidenav">
+                <a class="closebtn" onclick="closeNav()" style="float: right">
                     <img src="style/images/x.svg" />
                 </a>
                 <a href="#">About</a>
@@ -26,14 +22,26 @@
                 <a href="#">Deleted</a>
             </div>
 
-            <span style="font-size:30px;cursor:pointer" onclick="openNav()">
+            <a class="btn" onclick="openNav()">
                 <img src="style/images/menu.svg" />
-                <!-- <img src="style/images/apple.svg" /> -->
-            </span>
+            </a>
             <nav class="navigation-bar">
                 <ul>
                     <li>
-                        <button>suck</button>
+                        <a class="btn" onclick="openModal()">
+                            <img src="style/images/user.svg" />
+                        </a>
+                        <div class="modal" id="loginModal">
+                            <div id="loginContent">
+                                <a
+                                    class="btn"
+                                    onclick="closeModal()"
+                                    style="float: right"
+                                >
+                                    <img src="style/images/x.svg" />
+                                </a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </nav>
