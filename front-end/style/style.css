@@ -1,0 +1,56 @@
+@font-face {
+    font-family: "San Francisco";
+    src: url("SF-Pro-Display-Light.otf") format("woff");
+}
+
+body {
+    background: #fafafa;
+    font-family: "San francisco";
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    background: #222;
+    padding: 0 20px;
+    width: 100%;
+    opacity: 0.95;
+    height: 5.5%;
+}
+
+.navigation-bar {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    align-self: center;
+    margin: 1%;
+}
+
+.navigation-bar ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.navigation-bar li {
+    padding: 0 20px;
+}
+
+button {
+    background: #f85c50;
+    color: #fff;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+button:hover,
+button:focus {
+    transition: 0.3s;
+    background: #fbceb5;
+}
