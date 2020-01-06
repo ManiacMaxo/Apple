@@ -9,14 +9,21 @@ body {
     margin: 0 auto;
 }
 
+/* Header styling */
+
 header {
     display: flex;
     flex-direction: row;
+    position: fixed;
     background: #222;
     padding: 0 20px;
     width: 100%;
     opacity: 0.95;
     height: 5.5%;
+}
+
+header img {
+    filter: invert(100%);
 }
 
 .navigation-bar {
@@ -53,4 +60,40 @@ button:hover,
 button:focus {
     transition: 0.3s;
     background: #fbceb5;
+}
+
+/* Navigation bar styling */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding: 60px 0 0;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
