@@ -2,19 +2,18 @@
 
 <html lang="en">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
-        <link rel="stylesheet" href="style/style.css" />
-        <link rel="shortcut icon" href="style/images/favicon.ico" />
-        <script type="text/javascript" src="animate.js"></script>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="shortcut icon" href="assets/images/favicon.ico" />
+        <script type="text/javascript" src="index.js"></script>
     </head>
 
     <body>
         <header>
             <div id="sideNav" class="sidenav">
-                <a class="closebtn" onclick="closeNav()" style="float: right">
-                    <img src="style/images/x.svg" />
-                </a>
                 <a href="#">About</a>
                 <a href="#">Account</a>
                 <a href="#">Settings</a>
@@ -22,29 +21,48 @@
                 <a href="#">Deleted</a>
             </div>
 
-            <a class="btn" onclick="openNav()">
-                <img src="style/images/menu.svg" />
+            <a class="btn" onclick="nav()">
+                <img src="assets/images/menu.svg" />
             </a>
             <nav class="navigation-bar">
                 <ul>
                     <li>
                         <a class="btn" onclick="openModal()">
-                            <img src="style/images/user.svg" />
+                            <img src="assets/images/user.svg" />
                         </a>
                         <div class="modal" id="loginModal">
-                            <div id="loginContent">
+                            <div class="form">
                                 <a
                                     class="btn"
                                     onclick="closeModal()"
-                                    style="float: right"
+                                    assets="float: right"
                                 >
-                                    <img src="style/images/x.svg" />
+                                    <img src="assets/images/x.svg" />
                                 </a>
+                                <h1 class="form-heading">Create Account</h1>
+                                <form class="login-form">
+                                    <input type="email" placeholder="email" />
+                                    <input type="text" placeholder="username" />
+                                    <input
+                                        type="password"
+                                        placeholder="password"
+                                    />
+                                    <input
+                                        type="password"
+                                        placeholder="confirm password"
+                                    />
+                                    <button>Create Account</button>
+                                    <p class="message">
+                                        Already have an account?
+                                        <a href="#">Login</a>
+                                    </p>
+                                </form>
                             </div>
                         </div>
                     </li>
                 </ul>
             </nav>
         </header>
+        <div class="page-content"></div>
     </body>
 </html>

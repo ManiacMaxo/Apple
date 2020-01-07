@@ -54,35 +54,20 @@ header a {
     padding: 0 30px 0 0;
 }
 
-/* button {
-    background: #f85c50;
-    color: #fff;
-    width: 100%;
-    outline: 0;
-    border: 0;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-button:hover,
-button:focus {
-    transition: 0.3s;
-    background: #fbceb5;
-} */
-
 /* Navigation bar styling */
 
 .sidenav {
     height: 100%;
-    width: 0;
+    width: 250px;
     position: fixed;
     z-index: 1;
-    /* top: 5.5%; */
+    top: 5.5%;
     left: 0;
     background-color: #282828;
     overflow-x: hidden;
-    transition: 0.3s;
+    transition: 0.2s;
     padding: 60px 0 0;
+    transform: translateX(-250px);
 }
 
 .sidenav a {
@@ -107,7 +92,7 @@ button:focus {
     filter: invert(100%);
 }
 
-/* Login modal */
+/* modal */
 
 .modal {
     display: none;
@@ -123,10 +108,75 @@ button:focus {
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+/* Login form */
+
+.form {
+    background: #212121;
+    margin: 0 auto;
+    max-width: 360px;
+    border-radius: 5px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form .form-heading {
+    color: #fff;
+    margin-top: -10px;
+}
+
+.form input {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #fff;
+    background: #333;
+    outline: 0;
+    border: 0;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.form input:focus {
+    outline: 1px solid #fbceb5;
+}
+
+.form button {
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    background: #f85c50;
+    color: #fff;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    padding: 15px;
+    font-size: 14px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.form button:hover,
+.form button:focus {
+    transition: 0.3s;
+    background: #fbceb5;
+}
+
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.form .message a {
+    color: #f85c50;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.form .message a:hover,
+.form .message a:focus {
+    outline: none;
+    color: #fbceb5;
+    transition: 0.2s;
 }
