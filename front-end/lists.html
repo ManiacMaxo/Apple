@@ -12,6 +12,57 @@
         <script type="text/javascript" src="index.js"></script>
     </head>
     <body>
+        <header>
+            <div id="sideNav" class="sidenav">
+                <a href="#">About</a>
+                <a href="#">Account</a>
+                <a href="#">Settings</a>
+                <a href="lists.html">Lists</a>
+                <a href="#">Deleted</a>
+            </div>
+
+            <a class="btn" onclick="nav()">
+                <img src="assets/images/menu.svg" />
+            </a>
+            <nav class="navigation-bar">
+                <ul>
+                    <li>
+                        <a class="btn" onclick="openModal()">
+                            <img src="assets/images/user.svg" />
+                        </a>
+                        <div class="modal" id="loginModal">
+                            <div class="form">
+                                <a
+                                    class="btn"
+                                    onclick="closeModal()"
+                                    style="float: right;"
+                                >
+                                    <img src="assets/images/x.svg" />
+                                </a>
+                                <h1 class="form-heading">Create Account</h1>
+                                <form class="login-form">
+                                    <input type="email" placeholder="email" />
+                                    <input type="text" placeholder="username" />
+                                    <input
+                                        type="password"
+                                        placeholder="password"
+                                    />
+                                    <input
+                                        type="password"
+                                        placeholder="confirm password"
+                                    />
+                                    <button>Create Account</button>
+                                    <p class="message">
+                                        Already have an account?
+                                        <a href="#">Login</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         <div class="page-content">
             <ul class="to-do-list">
                 <li>Some task</li>

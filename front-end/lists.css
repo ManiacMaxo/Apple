@@ -2,13 +2,13 @@
     margin: auto 5%;
 }
 
-ul {
+.page-content ul {
     display: inline;
     list-style: none;
 }
 
-li {
-    background: #212121;
+.page-content li {
+    background: #302f2f;
     color: #f1f1f1;
     margin: 10px auto;
     max-width: 360px;
