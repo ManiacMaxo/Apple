@@ -96,13 +96,13 @@ header a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #b2d8d8;
     display: block;
     transition: 0.3s;
 }
 
 .sidenav a:hover {
-    color: #fafafa;
+    color: #008080;
 }
 
 /* modal */
@@ -151,12 +151,12 @@ header a {
 }
 
 .form input:focus {
-    outline: 1px solid #fbceb5;
+    outline: 1px solid #66b2b2;
 }
 
 .form button {
     text-transform: uppercase;
-    background: #f85c50;
+    background: #008080;
     color: #fff;
     width: 100%;
     outline: 0;
@@ -170,7 +170,7 @@ header a {
 .form button:hover,
 .form button:focus {
     transition: 0.3s;
-    background: #fbceb5;
+    background: #66b2b2;
 }
 
 .message {
@@ -180,7 +180,7 @@ header a {
 }
 
 .message a {
-    color: #f85c50;
+    color: #008080;
     text-decoration: none;
     transition: 0.2s;
 }
@@ -188,6 +188,11 @@ header a {
 .message a:hover,
 .message a:focus {
     outline: none;
-    color: #fbceb5;
+    color: #66b2b2;
     transition: 0.2s;
+}
+
+.error-message {
+    color: #008080;
+    display: none;
 }
