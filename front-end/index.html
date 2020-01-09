@@ -27,45 +27,69 @@
             <nav class="navigation-bar">
                 <ul>
                     <li>
-                        <a class="btn" onclick="openModal()">
+                        <a class="btn" onclick="openRegistration()">
                             <img src="assets/images/user.svg" />
                         </a>
-                        <div class="modal" id="loginModal">
-                            <div class="form">
-                                <a
-                                    class="btn"
-                                    onclick="closeModal()"
-                                    style="float: right;"
-                                >
-                                    <img src="assets/images/x.svg" />
-                                </a>
-                                <h1 class="form-heading">Create Account</h1>
-                                <form class="login-form">
-                                    <input type="email" placeholder="email" />
-                                    <input type="text" placeholder="username" />
-                                    <input
-                                        type="password"
-                                        placeholder="password"
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="confirm password"
-                                    />
-                                    <p class="error-message">
-                                        Passwords do not match!
-                                    </p>
-                                    <button>Create Account</button>
-                                    <p class="message">
-                                        Already have an account?
-                                        <a href="#">Login</a>
-                                    </p>
-                                </form>
-                            </div>
-                        </div>
                     </li>
                 </ul>
             </nav>
         </header>
-        <div class="page-content"></div>
+        <div class="page-content">
+            <div class="backdrop" id="backdrop">
+                <div class="form" id="registration-modal">
+                    <a
+                        class="btn"
+                        onclick="closeRegistration()"
+                        style="float: right;"
+                    >
+                        <img src="assets/images/x.svg" />
+                    </a>
+                    <h1 class="form-heading">Create your Account</h1>
+                    <form>
+                        <input type="email" placeholder="Email" />
+                        <input type="text" placeholder="Username" />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            id="password"
+                        />
+                        <input
+                            type="password"
+                            placeholder="Confirm password"
+                            id="confirm-password"
+                        />
+                        <p class="error-message" id="error-message">
+                            Passwords do not match!
+                        </p>
+                        <button>Create Account</button>
+                        <p class="message">
+                            Already have an account?
+                            <a onclick="openLogin()">Login</a>
+                        </p>
+                    </form>
+                </div>
+                <div class="form" id="login-modal">
+                    <p>
+                        <a
+                            class="btn"
+                            onclick="closeLogin()"
+                            style="float: right"
+                        >
+                            <img src="assets/images/x.svg" />
+                        </a>
+                    </p>
+                    <h1 class="form-heading">Please sign in.</h1>
+                    <form>
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        <button>Sign in</button>
+                        <p class="message">
+                            Don't have an account?
+                            <a onclick="openRegistration()">Register</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

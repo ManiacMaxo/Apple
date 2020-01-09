@@ -11,12 +11,48 @@ function nav() {
     }
 }
 
-function openModal() {
-    document.getElementById("loginModal").style.display = "block"
+function openLogin() {
+    closeRegistration()
+    document.getElementById("login-modal").style.display = "block"
+    document.getElementById("backdrop").style.display = "flex"
 }
 
-function closeModal() {
-    document.getElementById("loginModal").style.display = "none"
+function closeLogin() {
+    document.getElementById("login-modal").style.display = "none"
+    document.getElementById("backdrop").style.display = "none"
 }
 
-// function check
+function openRegistration() {
+    closeLogin()
+    document.getElementById("registration-modal").style.display = "block"
+    document.getElementById("backdrop").style.display = "flex"
+}
+
+function closeRegistration() {
+    document.getElementById("registration-modal").style.display = "none"
+    document.getElementById("backdrop").style.display = "none"
+}
+
+// check passwords
+/*
+const passwd = document.getElementsByName("password")
+const confirmPasswd = document.getElementById("confirm-password")
+const errMsg = document.getElementById("error-message")
+
+function onPaswordInput(event) {
+    if (passwd.value !== confirmPasswd.value) {
+        event.target.classList.add("invalid")
+        errmsg.style.display = "block"
+    } else {
+        passwd.classList.remove("invalid")
+        confirmPasswd.classList.remove("invalid")
+        errmsg.style.display = "none"
+    }
+}
+
+passwd.addEventListener("focusout", () => {
+    passwd.addEventListener("keyup", onPaswordInput)
+})
+
+confirmPasswd.addEventListener("keyup", onPaswordInput)
+ */
