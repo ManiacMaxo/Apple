@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
-        <link rel="stylesheet" href="style.css" />
-        <link rel="shortcut icon" href="assets/images/favicon.ico" />
-        <script type="text/javascript" src="index.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+        <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/favicon.ico') }}" />
+        <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
     </head>
 
     <body>
@@ -22,13 +22,13 @@
             </div>
 
             <a class="btn" onclick="nav()">
-                <img src="assets/images/menu.svg" />
+                <img src="{{ url_for('static', filename='assets/images/menu.svg') }}" />
             </a>
             <nav class="navigation-bar">
                 <ul>
                     <li>
                         <a class="btn" onclick="openRegistration()">
-                            <img src="assets/images/user.svg" />
+                            <img src="{{ url_for('static', filename='assets/images/user.svg') }}" />
                         </a>
                     </li>
                 </ul>
@@ -42,7 +42,7 @@
                         onclick="closeRegistration()"
                         style="float: right;"
                     >
-                        <img src="assets/images/x.svg" />
+                        <img src="{{ url_for('static', filename='assets/images/x.svg') }}" />
                     </a>
                     <h1 class="form-heading">Create your Account</h1>
                     <form>
@@ -75,7 +75,7 @@
                             onclick="closeLogin()"
                             style="float: right"
                         >
-                            <img src="assets/images/x.svg" />
+                            <img src="{{ url_for('static', filename='assets/images/x.svg') }}" />
                         </a>
                     </p>
                     <h1 class="form-heading">Please sign in.</h1>

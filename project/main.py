@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return render_template('../front-end/index.html')
+    return render_template('index.html')
 
 
 @app.route('/tasks')
 def list_posts():
-    return render_template('../front-end/lists.html', tasks=Task.all())
+    return render_template('lists.html', tasks=Task.all())
