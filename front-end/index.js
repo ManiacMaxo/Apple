@@ -56,3 +56,7 @@ passwd.addEventListener("focusout", () => {
 
 confirmPasswd.addEventListener("keyup", onPaswordInput)
  */
+
+function moreInfo() {
+    document.getElementById("list-info-modal").style.display = "block"
+}

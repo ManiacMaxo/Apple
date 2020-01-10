@@ -16,3 +16,23 @@
     padding: 15px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+.split {
+    position: fixed;
+    width: 50vw;
+    height: 100vh;
+    top: 5%;
+}
+
+.split h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
