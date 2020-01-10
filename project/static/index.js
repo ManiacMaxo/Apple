@@ -11,6 +11,19 @@ function nav() {
     }
 }
 
+let isDarkMode = false
+
+function darkMode() {
+    const backdrop = document.getElementById("body").style.background
+    if (isDarkMode) {
+        isDarkMode = true
+        backdrop = "#313131"
+    } else {
+        isDarkMode = false
+        backdrop = "#fafafa"
+    }
+}
+
 function openLogin() {
     closeRegistration()
     document.getElementById("login-modal").style.display = "block"
