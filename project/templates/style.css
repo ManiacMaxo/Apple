@@ -1,0 +1,201 @@
+@font-face {
+    font-family: "San Francisco";
+    src: url("assets/fonts/SF-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "San Francisco";
+    src: url("assets/fonts/SF-RegularItalic.otf") format("opentype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "San Francisco";
+    src: url("assets/fonts/SF-Bold.otf") format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "San Francisco";
+    src: url("assets/fonts/SF-BoldItalic.otf") format("opentype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+body {
+    background: #fafafa;
+    font-family: "San Francisco";
+    margin: 0 auto;
+}
+
+/* Header styling */
+
+header {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    background: #222;
+    padding: 0 20px;
+    width: 100%;
+    height: 5.5%;
+}
+
+.btn {
+    filter: invert(100%); /* change from black to white */
+}
+
+header a:hover {
+    cursor: pointer;
+}
+
+header a {
+    align-self: center;
+}
+
+.navigation-bar {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    align-self: center;
+    margin: 1%;
+}
+
+.navigation-bar ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.navigation-bar li {
+    padding: 0 30px 0 0;
+}
+
+/* Navigation bar styling */
+
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 5.5%;
+    left: 0;
+    background-color: #282828;
+    overflow-x: hidden;
+    transition: 0.2s;
+    padding: 60px 0 0;
+    transform: translateX(-250px);
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #b2d8d8;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #008080;
+}
+
+/* backdrop for modals */
+
+.backdrop {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* form modal */
+
+.form {
+    display: none;
+    position: fixed;
+    background: #212121;
+    margin: auto;
+    max-width: 360px;
+    border-radius: 5px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form .form-heading {
+    color: #fff;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.form input {
+    font-size: 14px;
+    color: #fff;
+    background: #333;
+    outline: 0;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 0;
+}
+
+.form input:focus {
+    outline: 1px solid #66b2b2;
+}
+
+.form button {
+    text-transform: uppercase;
+    background: #008080;
+    color: #fff;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    border-radius: 3px;
+    padding: 15px;
+    font-size: 14px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.form button:hover,
+.form button:focus {
+    transition: 0.3s;
+    background: #66b2b2;
+}
+
+.message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.message a {
+    color: #008080;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.message a:hover,
+.message a:focus {
+    outline: none;
+    color: #66b2b2;
+    transition: 0.2s;
+}
+
+.error-message {
+    color: #008080;
+    display: none;
+}

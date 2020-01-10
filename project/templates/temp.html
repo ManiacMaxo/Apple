@@ -1,0 +1,40 @@
+<div class="form">
+    <a class="btn" onclick="closeLogin()" style="float: right">
+        <img src="assets/images/x.svg" />
+    </a>
+    <h1 class="form-heading">Log in</h1>
+    <form>
+        <input type="text" placeholder="username or email" />
+        <input type="password" placeholder="password" />
+        <button>Log in</button>
+        <p class="message">
+            Don't have an account?
+            <a onclick="openRegistration()">Register</a>
+        </p>
+    </form>
+</div>
+
+<div class="form">
+    <a class="btn" onclick="closeRegistration()" style="float: right;">
+        <img src="assets/images/x.svg" />
+    </a>
+    <h1 class="form-heading">Create Account</h1>
+    <form>
+        <input type="email" placeholder="email" />
+        <input type="text" placeholder="username" />
+        <input type="password" placeholder="password" id="password" />
+        <input
+            type="password"
+            placeholder="confirm password"
+            id="confirm-password"
+        />
+        <p class="error-message" id="error-message">
+            Passwords do not match!
+        </p>
+        <button>Create Account</button>
+        <p class="message">
+            Already have an account?
+            <a onclick="openLogin()">Login</a>
+        </p>
+    </form>
+</div>
