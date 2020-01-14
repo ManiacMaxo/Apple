@@ -15,7 +15,7 @@ def hello():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
-        return render_template('index.html')
+        return render_template('register.html')
     elif request.method == 'POST':
         values = (
             None,
@@ -35,6 +35,17 @@ def verify_password(username, password):
 
     return False
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    elif request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.find_by_username(username)
+        if user:
+        	return user.verify_password(password)
+        return False	
 
 
 @app.route('/tasks')
