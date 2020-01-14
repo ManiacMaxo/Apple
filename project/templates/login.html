@@ -22,7 +22,7 @@
 
     <body>
         <header>
-            <a href="/">
+            <a href="/" class="home-button">
                 <img
                     src="{{ url_for('static', filename='assets/images/apple.svg') }}"
                 />
@@ -45,19 +45,21 @@
 
         <div class="page-content">
             <div class="form">
-                <h1>Please sign in.</h1>
-                <input type="email" placeholder="Email" id="email" />
-                <input type="password" placeholder="Password" id="pswd" />
-                <button onclick="validate()">Sign in</button>
-                <a href="/register">
-                    Don't have an account? Create one now.
-                </a>
+                <form action="/login" method="post">
+                    <h1>Please sign in.</h1>
+                    <input name="email" type="email" placeholder="Email" id="email" />
+                    <input name="password" type="password" placeholder="Password" id="pswd" />
+                    <button onclick="validate()">Sign in</button>
+                    <a href="/register">
+                        Don't have an account? Create one now.
+                    </a>
+                </form>
             </div>
         </div>
 
         <script
             type="text/javascript"
-            src="{{ url_for('static', filename='animation.js') }}"
+            src="{{ url_for('static', filename='animations.js') }}"
         ></script>
         <script
             type="text/javascript"

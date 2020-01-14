@@ -50,34 +50,37 @@
 
         <div class="page-content">
             <div class="form">
-                <h1>Create Your Account</h1>
-                <input type="text" placeholder="Username" id="usrnm" required />
-                <input type="email" placeholder="Email" id="email" required />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    id="pswd"
-                    required
-                />
-                <div class="error-message" id="short-password">
-                    Password is less than 8 symbols
-                </div>
-                <input
-                    type="password"
-                    placeholder="Confirm password"
-                    id="confirm-pswd"
-                    required
-                />
-                <div class="error-message" id="error-message">
-                    The passwords you entered do not match.
-                </div>
-                <button>Continue</button>
+                <form action="/register" method="post">
+                    <h1>Create Your Account</h1>
+                    <input name="username" type="text" placeholder="Username" id="usrnm" required />
+                    <input name="email" type="email" placeholder="Email" id="email" required />
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        id="pswd"
+                        required
+                    />
+                    <div class="error-message" id="short-password">
+                        Password is less than 8 symbols
+                    </div>
+                    <input
+                        type="password"
+                        placeholder="Confirm password"
+                        id="confirm-pswd"
+                        required
+                    />
+                    <div class="error-message" id="error-message">
+                        The passwords you entered do not match.
+                    </div>
+                    <button>Continue</button>
+                </form>
             </div>
         </div>
 
         <script
             type="text/javascript"
-            src="{{ url_for('static', filename='animation.js') }}"
+            src="{{ url_for('static', filename='animations.js') }}"
         ></script>
         <script
             type="text/javascript"

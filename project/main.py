@@ -20,34 +20,22 @@ def register():
         values = (
             None,
             request.form['username'],
+            request.form['email'],
             User.hash_password(request.form['password'])
         )
         User(*values).create()
+        user = User.find_by_email(request.form['email'])
 
-        return redirect('/')
-
-
-@auth.verify_password
-def verify_password(username, password):
-    user = User.find_by_username(username)
-    if user:
-        return user.verify_password(password)
-
-    return False
+        return redirect('/profile/<int:id>', user=user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
     elif request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
-        user = User.find_by_username(username)
-        if user:
-        	return user.verify_password(password)
-        return False	
-
-
-@app.route('/tasks')
-def list_posts():
-    return render_template('lists.html', tasks=Task.all())
+        user = User.find_by_email(email)
+        if user and user.verify_password(password):
+            return redirect('/profile/<int:id>', user=user)
+        return redirect('/login')
