@@ -12,10 +12,10 @@ auth = HTTPBasicAuth()
 def hello():
     return render_template('index.html')
 
-@app.route('/?id=register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
-        return render_template('index.html', id = "register")
+        return render_template('index.html')
     elif request.method == 'POST':
         values = (
             None,
