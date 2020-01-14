@@ -6,58 +6,62 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-        <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/favicon.ico') }}" />
-        <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/login.css') }}"
+        />
+        <link
+            rel="shortcut icon"
+            href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
+        />
     </head>
 
     <body>
         <header>
-            <div id="sideNav" class="sidenav">
-                <a href="#">About</a>
-                <a href="#">Account</a>
-                <a href="#">Settings</a>
-                <a href="#">Lists</a>
-                <a href="#">Deleted</a>
-            </div>
-
-            <a class="btn" onclick="nav()">
-                <img src="{{ url_for('static', filename='assets/images/menu.svg') }}" />
+            <a href="/">
+                <img
+                    src="{{ url_for('static', filename='assets/images/apple.svg') }}"
+                />
             </a>
             <nav class="navigation-bar">
                 <ul>
                     <li>
-                        <a href="/register" class="btn">
-                            <img src="{{ url_for('static', filename='assets/images/user.svg') }}" />
+                        <a style="color:#a5a5a5; cursor: default">
+                            Sign in
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/register">
+                            Create Your Account
                         </a>
                     </li>
                 </ul>
             </nav>
         </header>
+
         <div class="page-content">
-            <div class="backdrop" id="backdrop" style="display:flex">
-                <div class="form" id="login-modal" style="display:block">
-                    <p>
-                        <a
-                            class="btn"
-                            href="/"
-                            style="float: right"
-                        >
-                            <img src="{{ url_for('static', filename='assets/images/x.svg') }}" />
-                        </a>
-                    </p>
-                    <h1 class="form-heading">Please sign in.</h1>
-                    <form action='/login', method="get">
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button type="submit">Sign in</button>
-                        <p class="message">
-                            Don't have an account?
-                            <a href="/register">Register</a>
-                        </p>
-                    </form>
-                </div>
+            <div class="form">
+                <h1>Please sign in.</h1>
+                <input type="email" placeholder="Email" id="email" />
+                <input type="password" placeholder="Password" id="pswd" />
+                <button onclick="validate()">Sign in</button>
+                <a href="/register">
+                    Don't have an account? Create one now.
+                </a>
             </div>
         </div>
+
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='animation.js') }}"
+        ></script>
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='security.js') }}"
+        ></script>
     </body>
 </html>

@@ -5,17 +5,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <meta name="google-signin-scope" content="profile email" />
-        <meta
-            name="google-signin-client_id"
-            content="AppleList.apps.googleusercontent.com"
-        />
-        <script
-            src="https://apis.google.com/js/platform.js"
-            async
-            defer
-        ></script>
-
         <title>Apple</title>
         <link
             rel="stylesheet"
@@ -33,22 +22,20 @@
 
     <body>
         <header>
+            <a href="/">
+                <img
+                    src="{{ url_for('static', filename='assets/images/apple.svg') }}"
+                />
+            </a>
             <nav class="navigation-bar">
                 <ul>
-                    <li>
-                        <a href="/">
-                            <img
-                                src="{{ url_for('static', filename='assets/images/apple.svg') }}"
-                            />
-                        </a>
-                    </li>
                     <li>
                         <a href="/login">
                             Sign in
                         </a>
                     </li>
                     <li>
-                        <a href="/register">
+                        <a style="color: #a5a5a5; cursor: default">
                             Create Your Account
                         </a>
                     </li>
@@ -67,9 +54,9 @@
                     placeholder="Confirm password"
                     id="confirm-pswd"
                 />
-                <p class="error-message" id="error-message">
+                <div class="error-message" id="error-message">
                     The passwords you entered do not match.
-                </p>
+                </div>
                 <button>Continue</button>
             </div>
         </div>

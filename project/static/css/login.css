@@ -1,11 +1,11 @@
-page-content {
+.page-content {
     display: flex;
     position: fixed;
     justify-content: center;
     align-items: center;
-    top: 0;
+    top: 5vh;
     left: 0;
-    height: 100vh;
+    height: 95vh;
     width: 100vw;
     color: #111;
 }
@@ -64,6 +64,7 @@ page-content {
     text-align: center;
     white-space: nowrap;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .form button:hover,
@@ -71,30 +72,21 @@ page-content {
     background: linear-gradient(rgb(66, 169, 252), rgb(0, 120, 217));
 }
 
-.message {
-    margin: 15px 0 0;
-    color: #333;
-    font-size: 12px;
-}
-
-.message a {
+.form a {
     color: #0070c9;
     text-decoration: none;
-    transition: 0.2s;
 }
 
-.message a:hover,
-.message a:focus {
-    outline: none;
-    color: #66b2b2;
-    transition: 0.2s;
+.form a:hover {
+    text-decoration: underline;
 }
 
 .error-message {
     color: #de071c;
     display: none;
+    margin-bottom: 10px;
 }
 
-.error-message::before {
-    content: "";
-}
+/* .error-message::before {
+    content: ;
+} */

@@ -48,3 +48,9 @@ function passwordLength(event) {
         errMsg.style.display = "none"
     }
 }
+
+// Check if all fields are filled
+
+function validate() {
+    
+}

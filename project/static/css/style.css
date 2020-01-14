@@ -44,10 +44,6 @@ header {
     height: 5.5%;
 }
 
-.btn {
-    filter: invert(100%); /* change from black to white */
-}
-
 .btn:hover,
 header a:hover {
     cursor: pointer;
