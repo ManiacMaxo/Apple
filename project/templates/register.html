@@ -5,6 +5,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="google-signin-scope" content="profile email" />
+        <meta
+            name="google-signin-client_id"
+            content="AppleList.apps.googleusercontent.com"
+        />
+        <script
+            src="https://apis.google.com/js/platform.js"
+            async
+            defer
+        ></script>
+
         <title>Apple</title>
         <link
             rel="stylesheet"
@@ -48,20 +59,26 @@
         <div class="page-content">
             <div class="form">
                 <h1>Create Your Account</h1>
-                <input type="text" name="Username" id="usrnm" />
-                <input type="email" name="Email" id="email" />
-                <input type="password" name="Password" id="pswd" />
+                <input type="text" placeholder="Username" id="usrnm" />
+                <input type="email" placeholder="Email" id="email" />
+                <input type="password" placeholder="Password" id="pswd" />
                 <input
                     type="password"
-                    name="Confirm password"
+                    placeholder="Confirm password"
                     id="confirm-pswd"
                 />
+                <button></button>
             </div>
+            <div class="g-signin2"></div>
         </div>
 
         <script
             type="text/javascript"
-            src="{{ url_for('static', filename='index.js') }}"
+            src="{{ url_for('static', filename='animation.js') }}"
+        ></script>
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='security.js') }}"
         ></script>
     </body>
 </html>
