@@ -3,15 +3,14 @@ page-content {
     position: fixed;
     justify-content: center;
     align-items: center;
-    top: 5.5%;
+    top: 0;
     left: 0;
-    height: 94.5vh;
+    height: 100vh;
     width: 100vw;
     color: #111;
 }
 
 .navigation-bar li a {
-    align-self: center;
     color: #fff;
     font-size: 15px;
     font-weight: 400;
@@ -50,33 +49,36 @@ page-content {
 }
 
 .form button {
-    text-transform: uppercase;
-    background: #008080;
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    background-color: #0070c9;
+    background: linear-gradient(#42a1ec, #0070c9);
+    border: 1px solid #07c;
+    border-radius: 4px;
     color: #fff;
-    width: 100%;
-    outline: 0;
-    border: 0;
-    border-radius: 3px;
-    padding: 15px;
-    font-size: 14px;
-    transition: 0.3s;
     cursor: pointer;
+    min-width: 30px;
+    padding: 4px 15px;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
 }
 
 .form button:hover,
 .form button:focus {
-    transition: 0.3s;
-    background: #66b2b2;
+    background: linear-gradient(rgb(66, 169, 252), rgb(0, 120, 217));
 }
 
 .message {
     margin: 15px 0 0;
-    color: #b3b3b3;
+    color: #333;
     font-size: 12px;
 }
 
 .message a {
-    color: #008080;
+    color: #0070c9;
     text-decoration: none;
     transition: 0.2s;
 }
@@ -88,11 +90,11 @@ page-content {
     transition: 0.2s;
 }
 
-.form input.invalid {
-    border-color: tomato;
+.error-message {
+    color: #de071c;
+    display: none;
 }
 
-.error-message {
-    color: tomato;
-    display: none;
+.error-message::before {
+    content: "";
 }

@@ -1,36 +1,34 @@
-// Sign in with Google
-
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile()
-    console.log("ID: " + profile.getId()) // Don't send this directly to your server!
-    console.log("Full Name: " + profile.getName())
-    console.log("Given Name: " + profile.getGivenName())
-    console.log("Family Name: " + profile.getFamilyName())
-    console.log("Image URL: " + profile.getImageUrl())
-    console.log("Email: " + profile.getEmail())
-
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token
-    console.log("ID Token: " + id_token)
-}
-
 // Verify that passwords match
 
-let passwd = document.getElementById("password")
-let confirmPasswd = document.getElementById("confirm-password")
+let passwd = document.getElementById("pswd")
+let confirmPasswd = document.getElementById("confirm-pswd")
 let errMsg = document.getElementById("error-message")
 
 function onPasswordInput(event) {
     if (passwd.value !== confirmPasswd.value) {
         event.target.classList.add("invalid")
-        errMsg.style.display = "block"
-        // document.getElementsByName("login-input")
+        error()
     } else {
         passwd.classList.remove("invalid")
         confirmPasswd.classList.remove("invalid")
-        errMsg.style.display = "none"
+        noError()
     }
+}
+
+function error() {
+    passwd.style.background = "#fef0f0"
+    passwd.style.borderColor = "#de071c"
+    confirmPasswd.style.background = "#fef0f0"
+    confirmPasswd.style.borderColor = "#de071c"
+    errMsg.style.display = "block"
+}
+
+function noError() {
+    passwd.style.background = "#fff"
+    passwd.style.borderColor = "#d6d6d6"
+    confirmPasswd.style.background = "#fff"
+    confirmPasswd.style.borderColor = "#d6d6d6"
+    errMsg.style.display = "none"
 }
 
 passwd.addEventListener("focusout", () => {
