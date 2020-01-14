@@ -27,7 +27,7 @@
             <nav class="navigation-bar">
                 <ul>
                     <li>
-                        <a href="/register" class="btn" onclick="openRegistration()">
+                        <a  class="btn" onclick="openRegistration()">
                             <img src="{{ url_for('static', filename='assets/images/user.svg') }}" />
                         </a>
                     </li>
@@ -64,7 +64,7 @@
                         <button type="submit">Create Account</button>
                         <p class="message">
                             Already have an account?
-                            <a href="login" onclick="openLogin()">Login</a>
+                            <a onclick="openLogin()">Login</a>
                         </p>
                     </form>
                 </div>
@@ -85,7 +85,7 @@
                         <button type="submit">Sign in</button>
                         <p class="message">
                             Don't have an account?
-                            <a href="/register" onclick="openRegistration()">Register</a>
+                            <a onclick="openRegistration()">Register</a>
                         </p>
                     </form>
                 </div>
