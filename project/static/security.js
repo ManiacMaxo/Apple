@@ -52,5 +52,4 @@ function passwordLength(event) {
 // Check if all fields are filled
 
 function validate() {
-    
 }

@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
+        <meta name="appleid-signin-client-id" content="[CLIENT_ID]" />
+        <meta name="appleid-signin-scope" content="[SCOPES]" />
+        <meta name="appleid-signin-redirect-uri" content="[REDIRECT_URI]" />
+        <meta name="appleid-signin-state" content="[STATE]" />
+
         <link
             rel="stylesheet"
             href="{{ url_for('static', filename='css/style.css') }}"
@@ -46,13 +51,22 @@
         <div class="page-content">
             <div class="form">
                 <h1>Create Your Account</h1>
-                <input type="text" placeholder="Username" id="usrnm" />
-                <input type="email" placeholder="Email" id="email" />
-                <input type="password" placeholder="Password" id="pswd" />
+                <input type="text" placeholder="Username" id="usrnm" required />
+                <input type="email" placeholder="Email" id="email" required />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    id="pswd"
+                    required
+                />
+                <div class="error-message" id="short-password">
+                    Password is less than 8 symbols
+                </div>
                 <input
                     type="password"
                     placeholder="Confirm password"
                     id="confirm-pswd"
+                    required
                 />
                 <div class="error-message" id="error-message">
                     The passwords you entered do not match.
