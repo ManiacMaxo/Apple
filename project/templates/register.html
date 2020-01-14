@@ -6,9 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-        <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/favicon.ico') }}" />
-        <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
+        />
+        <link
+            rel="shortcut icon"
+            href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
+        />
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='index.js') }}"
+        ></script>
     </head>
 
     <body>
@@ -22,13 +31,21 @@
             </div>
 
             <a class="btn" onclick="nav()">
-                <img src="{{ url_for('static', filename='assets/images/menu.svg') }}" />
+                <img
+                    src="{{ url_for('static', filename='assets/images/menu.svg') }}"
+                />
             </a>
             <nav class="navigation-bar">
                 <ul>
                     <li>
-                        <a href="/register" class="btn" onclick="openRegistration()">
-                            <img src="{{ url_for('static', filename='assets/images/user.svg') }}" />
+                        <a
+                            href="/register"
+                            class="btn"
+                            onclick="openRegistration()"
+                        >
+                            <img
+                                src="{{ url_for('static', filename='assets/images/user.svg') }}"
+                            />
                         </a>
                     </li>
                 </ul>
@@ -37,17 +54,15 @@
         <div class="page-content">
             <div class="backdrop" id="backdrop" style="display:flex">
                 <div class="form" id="registration-modal" style="display:block">
-                    <a
-                        class="btn"
-                        href="/"
-                        style="float: right;"
-                    >
-                        <img src="{{ url_for('static', filename='assets/images/x.svg') }}" />
+                    <a class="btn" href="/" style="float: right;">
+                        <img
+                            src="{{ url_for('static', filename='assets/images/x.svg') }}"
+                        />
                     </a>
                     <h1 class="form-heading">Create your Account</h1>
                     <form action="/register" method="post">
-                        <input type="email" placeholder="Email" />
                         <input type="text" placeholder="Username" />
+                        <input type="email" placeholder="Email" />
                         <input
                             type="password"
                             placeholder="Password"
@@ -58,9 +73,9 @@
                             placeholder="Confirm password"
                             id="confirm-password"
                         />
-                        <p class="error-message" id="error-message">
-                            Passwords do not match!
-                        </p>
+                        <div class="error-message" id="error-message">
+                            <p>Passwords do not match!</p>
+                        </div>
                         <button type="submit">Create Account</button>
                         <p class="message">
                             Already have an account?

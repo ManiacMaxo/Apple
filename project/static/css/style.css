@@ -195,7 +195,11 @@ header a {
     transition: 0.2s;
 }
 
+.form input.invalid {
+    border-color: tomato;
+}
+
 .error-message {
-    color: #008080;
+    color: tomato;
     display: none;
 }

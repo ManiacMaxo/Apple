@@ -47,7 +47,7 @@ function closeRegistration() {
 }
 
 // check passwords
-/*
+
 const passwd = document.getElementsByName("password")
 const confirmPasswd = document.getElementById("confirm-password")
 const errMsg = document.getElementById("error-message")
@@ -55,11 +55,11 @@ const errMsg = document.getElementById("error-message")
 function onPaswordInput(event) {
     if (passwd.value !== confirmPasswd.value) {
         event.target.classList.add("invalid")
-        errmsg.style.display = "block"
+        errMsg.style.display = "block"
     } else {
         passwd.classList.remove("invalid")
         confirmPasswd.classList.remove("invalid")
-        errmsg.style.display = "none"
+        errMsg.style.display = "none"
     }
 }
 
@@ -68,7 +68,6 @@ passwd.addEventListener("focusout", () => {
 })
 
 confirmPasswd.addEventListener("keyup", onPaswordInput)
- */
 
 function moreInfo() {
     document.getElementById("list-info-modal").style.display = "block"
