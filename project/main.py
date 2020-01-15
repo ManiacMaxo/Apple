@@ -29,7 +29,7 @@ def register():
         User(*values).create()
         user = User.find_by_email(request.form['email'])
 
-        return url_for('show_profile', user=user)
+        return redirect(url_for('show_profile', id = user.id))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -41,13 +41,14 @@ def login():
         email = request.form['email']
         password = request.form['password']
         user = User.find_by_email(email)
-        
+                
         if user and user.verify_password(password):
-            return redirect('/profile')
-        
-        return url_for('show_profile', user=user)
+            return redirect(url_for('show_profile', id = user.id))
+
+        return redirect('/login')
 
 
-@app.route('/profile')
-def show_profile(user):
+@app.route('/profile/<int:id>')
+def show_profile(id):
+    user = User.find_by_id(id)
     return render_template('profile.html', user=user)

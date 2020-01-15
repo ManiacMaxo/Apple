@@ -33,89 +33,20 @@
 
             <!-- TODO @Victor -->
             <a class="btn" onclick="nav()">
-                <object
+                <!-- <object
                     data="{{ url_for('static', filename='assets/images/menu.svg') }}"
                     type="image/svg+xml"
-                ></object>
+                ></object> -->
+                <p> text </p>
             </a>
             <!-- TODO @Victor -->
 
             <nav class="navigation-bar">
-                <ul>
-                    <li>
-                        <a href="/login">
-                            Sign in
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/register">
-                            Create Your Account
-                        </a>
-                    </li>
-                </ul>
+                <p>Hi, {{ user.username }}!</p>
             </nav>
         </header>
-        <!--    <div class="page-content">
-            <div class="backdrop" id="backdrop">
-                <div class="form" id="registration-modal">
-                    <a
-                        class="btn"
-                        onclick="closeRegistration()"
-                        style="float: right;"
-                    >
-                        <img
-                            src="{{ url_for('static', filename='assets/images/x.svg') }}"
-                        />
-                    </a>
-                    <h1 class="form-heading">Create your Account</h1>
-                    <form action="/register" method="post">
-                        <input type="email" placeholder="Email" />
-                        <input type="text" placeholder="Username" />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            id="password"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Confirm password"
-                            id="confirm-password"
-                        />
-                        <p class="error-message" id="error-message">
-                            Passwords do not match!
-                        </p>
-                        <button type="submit">Create Account</button>
-                        <p class="message">
-                            Already have an account?
-                            <a href="/login">Login</a>
-                        </p>
-                    </form>
-                </div>
-                <div class="form" id="login-modal">
-                    <p>
-                        <a
-                            class="btn"
-                            onclick="closeLogin()"
-                            style="float: right"
-                        >
-                            <img
-                                src="{{ url_for('static', filename='assets/images/x.svg') }}"
-                            />
-                        </a>
-                    </p>
-                    <h1 class="form-heading">Please sign in.</h1>
-                    <form action="/login" , method="get">
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button type="submit">Sign in</button>
-                        <p class="message">
-                            Don't have an account?
-                            <a href="/register">Register</a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div> -->
+        <div class="page-content">
+            
+        </div>
     </body>
 </html>

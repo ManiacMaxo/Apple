@@ -82,6 +82,13 @@ header a {
     text-decoration: none;
 }
 
+.navigation-bar p {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 20px;
+}
+
 /* sidenav bar styling */
 
 .sidenav {

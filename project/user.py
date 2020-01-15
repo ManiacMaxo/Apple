@@ -28,6 +28,18 @@ class User:
                 return User(*row)
 
     @staticmethod
+    def find_by_id(id):
+        if not id:
+            return None
+        with DB() as db:
+            row = db.execute(
+                'SELECT * FROM users WHERE id = ?',
+                (id,)
+            ).fetchone()
+            if row:
+                return User(*row)
+
+    @staticmethod
     def hash_password(password):
         return hashlib.sha256(password.encode('utf-8')).hexdigest()
 
