@@ -18,6 +18,7 @@ def hello():
 def register():
     if request.method == 'GET':
         return render_template('register.html')
+    
     elif request.method == 'POST':
         values = (
             None,
@@ -28,22 +29,25 @@ def register():
         User(*values).create()
         user = User.find_by_email(request.form['email'])
 
-        return redirect('/profile/<int:id>', user=user)
+        return url_for('show_profile', user=user)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
+    
     elif request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         user = User.find_by_email(email)
+        
         if user and user.verify_password(password):
-            return redirect('/profile/<int:id>', user=user)
-        return redirect('/login')
+            return redirect('/profile')
+        
+        return url_for('show_profile', user=user)
 
 
-@app.route('/profile', methods=['GET'])
-def show_profile():
-    return render_template('profile.html')
+@app.route('/profile')
+def show_profile(user):
+    return render_template('profile.html', user=user)
