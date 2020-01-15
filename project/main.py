@@ -29,33 +29,17 @@ def register():
     
     elif request.method == "POST":
 
-        flashes = False
+        values = (
+            None,
+            request.form["username"],
+            request.form["email"],
+            User.hash_password(request.form["password"])
+        )
 
-        # check if mail exists
-        temp_user = User.find_by_email(request.form["email"])
-        if temp_user:
-            flash("Account with this email already exists!", "email")
-            flashes = True
+        User(*values).create()
+        user = User.find_by_email(request.form["email"])
 
-        # check if passwords match
-        if User.hash_password(request.form["password"]) != User.hash_password(request.form["confirm"]):
-            redirect("/")
-            flashes = True
-
-        if flashes == False:
-            values = (
-                None,
-                request.form["username"],
-                request.form["email"],
-                User.hash_password(request.form["password"])
-            )
-
-            User(*values).create()
-            user = User.find_by_email(request.form["email"])
-
-            return redirect(url_for("show_profile", id = user.id))
-
-        return redirect("/")
+        return redirect(url_for("show_profile", id = user.id))
 
 
 @app.route("/login", methods = ["GET", "POST"])
