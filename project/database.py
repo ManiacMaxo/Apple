@@ -20,27 +20,9 @@ CREATE TABLE IF NOT EXISTS tasks
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
         desciption TEXT,
-        date TEXT
-    )
-''')
-
-conn.cursor().execute('''
-CREATE TABLE IF NOT EXISTS completed
-    (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        desciption TEXT,
-        date TEXT
-    )
-''')
-
-conn.cursor().execute('''
-CREATE TABLE IF NOT EXISTS deleted
-    (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        desciption TEXT,
-        date TEXT
+        date TEXT,
+        user_id INTEGER,
+        FOREIGN_KEY(user_id) REFERENCES users(id)
     )
 ''')
 
