@@ -45,7 +45,7 @@
         </header>
 
         <div class="page-content">
-            <div class="form">
+           <!--  <div class="form">
                 <form action="/register" method="post">
                     <h1>Create Your Account</h1>
                     <input
@@ -74,6 +74,7 @@
                         Password is less than 8 symbols
                     </div>
                     <input
+                        name="confirm"
                         type="password"
                         placeholder="Confirm password"
                         id="confirm-pswd"
@@ -87,16 +88,29 @@
                         Already have an account? Sign in!
                     </a>
                 </form>
-            </div>
+            </div> --> 
+            <div class="form">
+                <form action="/register" method="post">
+                    <h1>Create Your Account</h1>
+                    {{ form.username }}
+                    {{ form.email }}
+                    {{ form.password }}
+                    {{ form.confirm }}
+                    <button type="submit" id="button">Continue</button>
+                    <a href="/login">
+                        Already have an account? Sign in!
+                    </a>
+                </form>
+            </div>       
         </div>
 
         <script
             type="text/javascript"
             src="{{ url_for('static', filename='animations.js') }}"
         ></script>
-        <script
+        <!-- <script
             type="text/javascript"
             src="{{ url_for('static', filename='security.js') }}"
-        ></script>
+        ></script> -->
     </body>
 </html>
