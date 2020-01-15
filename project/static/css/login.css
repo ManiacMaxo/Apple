@@ -77,3 +77,8 @@
 .error-message::before {
     content: "!";
 }
+
+.active {
+    color: #a5a5a5;
+    cursor: default;
+}
