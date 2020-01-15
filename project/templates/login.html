@@ -22,7 +22,7 @@
 
     <body>
         <header>
-            <a href="/" class="home-button">
+            <a href="/">
                 <img
                     src="{{ url_for('static', filename='assets/images/apple.svg') }}"
                 />
@@ -47,8 +47,18 @@
             <div class="form">
                 <form action="/login" method="post">
                     <h1>Please sign in.</h1>
-                    <input name="email" type="email" placeholder="Email" id="email" />
-                    <input name="password" type="password" placeholder="Password" id="pswd" />
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        id="email"
+                    />
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        id="pswd"
+                    />
                     <button onclick="validate()">Sign in</button>
                     <a href="/register">
                         Don't have an account? Create one now.

@@ -5,11 +5,6 @@
     text-decoration: none;
 }
 
-.home-button {
-    float: left;
-    margin-left: 30px;
-}
-
 .form {
     margin: 0 auto;
     max-width: 360px;
@@ -79,6 +74,6 @@
     margin-bottom: 10px;
 }
 
-/* .error-message::before {
-    content: ;
-} */
+.error-message::before {
+    content: "!";
+}

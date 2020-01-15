@@ -8,9 +8,11 @@ from user import User
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+
 @app.route('/')
 def hello():
     return render_template('index.html')
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -28,6 +30,7 @@ def register():
 
         return redirect('/profile/<int:id>', user=user)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -39,3 +42,8 @@ def login():
         if user and user.verify_password(password):
             return redirect('/profile/<int:id>', user=user)
         return redirect('/login')
+
+
+@app.route('/profile', methods=['GET'])
+def show_profile():
+    return render_template('profile.html')

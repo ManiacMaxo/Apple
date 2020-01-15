@@ -131,7 +131,7 @@ header a {
     position: fixed;
     margin: 0 auto;
     top: 5vh;
-    /*height: 95vh;*/
+    height: 95vh;
     width: 100vw;
     color: #111;
 }
@@ -140,14 +140,14 @@ header a {
     margin: 60px 10px 10px;
     font-size: 45px;
     font-weight: bold;
-    letter-spacing: .8;
+    letter-spacing: 0.8;
 }
 
 .page-content .p2 {
     margin: 10px;
     font-size: 30px;
     font-weight: bold;
-    letter-spacing: .8;
+    letter-spacing: 0.8;
 }
 
 .page-content {

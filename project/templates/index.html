@@ -22,7 +22,7 @@
 
     <body>
         <header>
-            <a href="/">
+            <a style="cursor: default">
                 <img
                     src="{{ url_for('static', filename='assets/images/apple.svg') }}"
                 />
@@ -34,6 +34,8 @@
                         <a href="/login">
                             Sign in
                         </a>
+                    </li>
+
                     <li>
                         <a href="/register">
                             Create Your Account
@@ -44,10 +46,10 @@
         </header>
         <div class="page-content">
             <div class="paragraph p1">
-                <p> Welcome to your To-Do List! </p>
+                <p>Welcome to your To-Do List!</p>
             </div>
             <div class="paragraph p2">
-                <p> Sign In or Create a New Account! </p>
+                <p>Sign In or Create a New Account!</p>
             </div>
         </div>
     </body>
