@@ -3,11 +3,13 @@ import hashlib
 from database import DB
 
 class Task:
-    def __init__(self, id, title, description, date):
+    def __init__(self, id, title, description, date, state, user):
         self.id = id
         self.title = title
         self.description = description
         self.date = date
+        self.state = state
+        self.user = user
 
     @staticmethod
     def all():
