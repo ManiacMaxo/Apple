@@ -1,5 +1,3 @@
-import hashlib
-
 from database import DB
 
 class Task:
@@ -8,8 +6,12 @@ class Task:
         self.title = title
         self.description = description
         self.date = date
-        self.state = state
+        self.state = 0
         self.user = user
+
+    # 0 -> to do
+    # 1 -> completed
+    # 2 -> deleted
 
     @staticmethod
     def all():
@@ -25,14 +27,14 @@ class Task:
 
     def create(self):
         with DB() as db:
-            values = (self.title, self.description, self.date)
-            db.execute('''INSERT INTO tasks (title, description, date) VALUES (?, ?, ?)''', values)
+            values = (self.title, self.description, self.date, self.state, self.user)
+            db.execute('''INSERT INTO tasks (title, description, date, state, user) VALUES (?, ?, ?, ?, ?)''', values)
             return self
 
     def save(self):
         with DB() as db:
-            values = (self.title, self.description, self.date, self.id)
-            db.execute('''UPDATE tasks SET title = ?, description = ?, date = ? WHERE id = ?''', values)
+            values = (self.title, self.description, self.date, self.state, self.user, self.id)
+            db.execute('''UPDATE tasks SET title = ?, description = ?, date = ?, state = ?, user = ? WHERE id = ?''', values)
             return self
 
     def delete(self):
@@ -41,25 +43,10 @@ class Task:
 
     def complete(self):
         with DB() as db:
-            values = (self.title, self.description, self.date)
-            db.execute('''DELETE FROM tasks WHERE id = ?''', (self.id,))
-            db.execute('''INSERT INTO completed (title, description, date) VALUES (?, ?, ?)''', values)
-
+            self.state = 1
+            db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state,))
+            
     def delete_from_tasks(self):
         with DB() as db:
-            values = (self.title, self.description, self.date)
-            db.execute('''DELETE FROM tasks WHERE id = ?''', (self.id,))
-            db.execute('''INSERT INTO deleted (title, description, date) VALUES (?, ?, ?)''', values)
-
-    def delete_from_completed(self):
-        with DB() as db:
-            values = (self.title, self.description, self.date)
-            db.execute('''DELETE FROM completed WHERE id = ?''', (self.id,))
-            db.execute('''INSERT INTO deleted (title, description, date) VALUES (?, ?, ?)''', values)
-
-    @staticmethod
-    def hash_password(password):
-        return hashlib.sha256(password.encode('utf-8')).hexdigest()
-
-    def verify_password(self, password):
-        return self.password == hashlib.sha256(password.encode('utf-8')).hexdigest()
+            self.state = 2
+            db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state,))
