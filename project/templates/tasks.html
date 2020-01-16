@@ -22,21 +22,16 @@
     <body id="body">
 
         <header>
-            <div id="sideNav" class="sidenav">
+            <!-- <div id="sideNav" class="sidenav">
                 <a href="#">Lists</a>
                 <a href="#">Completed</a>
                 <a href="#">Deleted</a>
-            </div>
-
-            <!-- TODO @Victor -->
-            <a class="btn" onclick="nav()">
-                <!-- <object
-                    data="{{ url_for('static', filename='assets/images/menu.svg') }}"
-                    type="image/svg+xml"
-                ></object> -->
-                <p> text </p>
-            </a>
-            <!-- TODO @Victor -->
+            </div> -->
+        
+            <nav class="navigation-bar-left">
+                <span class="active">Tasks</span>
+                <a href="#">Deleted</a>
+            </nav>
 
             <nav class="navigation-bar">
                 <p>Hi, {{ user.username }}!</p>
