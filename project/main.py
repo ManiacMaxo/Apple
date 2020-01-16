@@ -92,6 +92,7 @@ def logout():
     session["EMAIL"] = None
     return redirect("/")
 
+
 @app.route("/tasks")
 @require_login
 def show_tasks():
@@ -105,6 +106,7 @@ def show_tasks():
         all_in_progress = all_in_progress, 
         all_completed = all_completed
     )
+
 
 @app.route("/new_task", methods=["GET", "POST"])
 @require_login
@@ -126,3 +128,74 @@ def create_new_task():
 
     return render_template("new_task.html", user = user, form = form)
 
+
+@app.route("/edit_task/<int:id>", methods=["GET", "POST"])
+@require_login
+def edit_task(id):
+    task = Task.find_by_id(id)
+    form = TaskForm()
+    user = User.find_by_email(session.get("EMAIL"))
+
+    if user.id != task.user_id:
+        return redirect("/login")
+
+    form.title.data = task.title
+    form.date.data = task.date
+    form.description.data = task.description
+
+    if form.validate_on_submit():
+        task.title = request.form["title"]
+        task.date = request.form["date"]
+        task.description = request.form["description"]
+        task.save()
+        return redirect("/tasks")
+
+    return render_template("edit_task.html", user = user, form = form, task_id = task.id)
+
+
+@app.route("/to_do/<int:id>")
+@require_login
+def to_do(id):
+    task = Task.find_by_id(id)
+    user = User.find_by_email(session.get("EMAIL"))
+    if user.id != task.user_id:
+        redirect("/login")
+
+    task.move_to_to_do()
+    return redirect("/tasks")
+
+
+@app.route("/in_progress/<int:id>")
+@require_login
+def in_progress(id):
+    task = Task.find_by_id(id)
+    user = User.find_by_email(session.get("EMAIL"))
+    if user.id != task.user_id:
+        redirect("/login")
+
+    task.move_to_in_progress()
+    return redirect("/tasks")
+
+
+@app.route("/completed/<int:id>")
+@require_login
+def completed(id):
+    task = Task.find_by_id(id)
+    user = User.find_by_email(session.get("EMAIL"))
+    if user.id != task.user_id:
+        redirect("/login")
+
+    task.move_to_completed()
+    return redirect("/tasks")
+
+
+@app.route("/deleted/<int:id>")
+@require_login
+def deleted(id):
+    task = Task.find_by_id(id)
+    user = User.find_by_email(session.get("EMAIL"))
+    if user.id != task.user_id:
+        redirect("/login")
+
+    task.move_to_deleted()
+    return redirect("/tasks")

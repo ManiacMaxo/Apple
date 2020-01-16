@@ -38,6 +38,18 @@ class Task:
             db.execute('''UPDATE tasks SET title = ?, description = ?, date = ?, state = ?, user_id = ? WHERE id = ?''', values)
             return self
 
+    @staticmethod
+    def find_by_id(id):
+        if not id:
+            return None
+        with DB() as db:
+            row = db.execute(
+                'SELECT * FROM tasks WHERE id = ?',
+                (id,)
+            ).fetchone()
+            if row:
+                return Task(*row)
+
     def get_to_do(user_id):
         with DB() as db:
             rows = db.execute('''SELECT * FROM tasks WHERE state = 0 AND user_id = ?''', (user_id,)).fetchall()
@@ -62,22 +74,18 @@ class Task:
         with DB() as db:
             self.state = 0
             db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state, self.id))
-            return self
 
     def move_to_in_progress(self):
         with DB() as db:
             self.state = 1
             db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state, self.id))
-            return self
 
     def move_to_completed(self):
         with DB() as db:
             self.state = 2
             db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state, self.id))
-            return self
             
     def move_to_deleted(self):
         with DB() as db:
             self.state = 3
             db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state, self.id))
-            return self

@@ -69,3 +69,43 @@
     margin-top: -5px;
     font-weight: bold;
 }
+
+.state-button {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    border-radius: 4px;
+    cursor: pointer;
+    min-width: 30px;
+    padding: 4px 15px;
+    text-align: center;
+    white-space: nowrap;
+    width: 40%;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.state-button a {
+    color: #111;
+    text-decoration: none
+}
+
+#cancel {
+    border: 1px solid #dbb8db;
+    background: #cba8cb;
+}
+
+#start {
+    border: 1px solid #55ee55;
+    background: #45de45;
+}
+
+#complete {
+    border: 1px solid #eeee3a;
+    background: #dede2a;
+}
+
+#delete {
+    border: 1px solid #ff3a3a;
+    background: #ef2a2a;
+}

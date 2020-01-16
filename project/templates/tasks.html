@@ -41,7 +41,11 @@
                         Add Task
                     </li>
                     {% for to_do in all_to_do %}
-                            <li>{{ to_do.title }}</li>
+                            <li>
+                                <a href="/edit_task/{{ to_do.id }}">
+                                    {{ to_do.title }}
+                                </a>
+                            </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -49,7 +53,11 @@
                 <h1>In Progress</h1>
                 <ul class="in-progress-list">
                     {% for in_progress in all_in_progress %}
-                            <li>{{ in_progress.title }}</li>
+                            <li>
+                                <a href="/edit_task/{{ in_progress.id }}">
+                                    {{ in_progress.title }}
+                                </a>
+                            </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -57,7 +65,11 @@
                 <h1>Completed</h1>
                 <ul class="completed-list">
                     {% for completed in all_completed %}
-                            <li>{{ completed.title }}</li>
+                            <li>
+                                <a href="/edit_task/{{ completed.id }}">
+                                    {{ completed.title }}
+                                </a>
+                            </li>
                     {% endfor %}
                 </ul>
             </div>

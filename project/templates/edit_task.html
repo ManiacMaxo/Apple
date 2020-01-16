@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Apple</title>
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/style.css') }}" 
+        />
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/login.css') }}" 
+        />
+        <link 
+            rel="shortcut icon" 
+            href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
+        />
+    </head>
+    <body id="body">
+
+        <header>
+            <nav class="navigation-bar-left">
+                <a href="/tasks">Tasks</a>
+                <a href="#">Deleted</a>
+            </nav>
+
+            <nav class="navigation-bar">
+                <p>Hi, {{ user.username }}!</p>
+                <a href="/logout"> Logout </a>
+            </nav>
+        </header>
+
+        <div class="page-content">
+            <div class="form">
+                <form action="/edit_task/{{ task_id }}" method="post">
+                    {{ form.csrf_token }}
+                    <h1>Edit This Task</h1>
+                    {{ form.title }}
+                    {{ form.date }}
+                    {{ form.description }}
+                    <button type="submit" id="button">Save</button>
+                    <div class="state-button" id="cancel">
+                        <a href="/to_do/{{ task_id }}">Cancel Task</a>
+                    </div>
+                    <div class="state-button" id="start">
+                        <a href="/in_progress/{{ task_id }}">Start Task</a>
+                    </div>
+                    <div class="state-button" id="complete">
+                        <a href="/complete/{{ task_id }}">Complete Task</a>
+                    </div>
+                    <div class="state-button" id="delete">
+                        <a href="/delete/{{ task_id }}">Delete Task</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='animations.js') }}"
+        ></script>
+
+    </body>
+</html>
