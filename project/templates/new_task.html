@@ -22,14 +22,8 @@
     <body id="body">
 
         <header>
-            <!-- <div id="sideNav" class="sidenav">
-                <a href="#">Lists</a>
-                <a href="#">Completed</a>
-                <a href="#">Deleted</a>
-            </div> -->
-        
             <nav class="navigation-bar-left">
-                <span class="active">Tasks</span>
+                <a href="/tasks">Tasks</a>
                 <a href="#">Deleted</a>
             </nav>
 
@@ -40,27 +34,20 @@
         </header>
 
         <div class="page-content">
-            <div class="split left">
-                <h1>To do</h1>
-                <ul class="to-do-list">
-                    <li id="add-task" onclick="location.href='/new_task'">
-                        <!-- <a href="/new_task">Add Task</a> -->
-                        Add Task
-                    </li>
-                    <li>Second task</li>
-                </ul>
-            </div>
-            <div class="split middle">
-                <h1>In Progress</h1>
-                <ul class="in-progress-list">
-                    <li>Task In progress</li>
-                </ul>
-            </div>
-            <div class="split right">
-                <h1>Completed</h1>
-                <ul class="completed-list">
-                    <li>Completed Task</li>
-                </ul>
+            <div class="form">
+                <form action="/new_task" method="post">
+                    {{ form.csrf_token }}
+                    <h1>Create a New Task</h1>
+                    {{ form.title }}
+                    <ul>
+                        {% for error in form.title.errors %}
+                            <li class="error-message">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {{ form.deadline }}
+                    {{ form.description }}
+                    <button type="submit" id="button">Continue</button>
+                </form>
             </div>
         </div>
 

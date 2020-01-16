@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_httpauth import HTTPBasicAuth
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, validators
+from wtforms import StringField, PasswordField, DateField, validators
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import InputRequired, EqualTo, Length, NoneOf, ValidationError
 import os
@@ -30,15 +30,21 @@ def check_password(form, password):
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField("username", [InputRequired(message = "Username is required!")])
-    email = EmailField("email", [InputRequired(message = "Email is required"), NoneOf(User.all_emails(), message = "An account with this email address already exists!")])
-    password = PasswordField("password", [InputRequired(message = "Password is required!"), Length(min = 8, message = "Password must be at least 8 characters!")])
+    username = StringField("username", [InputRequired()])
+    email = EmailField("email", [InputRequired(), NoneOf(User.all_emails(), message = "An account with this email address already exists!")])
+    password = PasswordField("password", [InputRequired(), Length(min = 8, message = "Password must be at least 8 characters!")])
     confirm = PasswordField("confirm", [EqualTo("password", message = "Passwords must match!")])
 
 
 class LoginForm(FlaskForm):
     email = EmailField("email", [InputRequired(message = "Email is required!")])
     password = PasswordField("password", [InputRequired(message = "Password is required"), check_password])
+
+
+class TaskForm(FlaskForm):
+    title = StringField("title", [InputRequired()])
+    date = DateField()
+    description = StringField() 
 
 
 @app.route("/")
@@ -89,3 +95,15 @@ def logout():
 def show_tasks():
     user = User.find_by_email(session.get("EMAIL"))
     return render_template("tasks.html", user = user)
+
+@app.route("/new_task", methods=["GET", "POST"])
+@require_login
+def create_new_task():
+    form = TaskForm
+
+    if form.validate_on_submit():
+        user = User.find_by_email(session.get("EMAIL"))
+
+
+    return render_template("new_task.html", form = form)
+

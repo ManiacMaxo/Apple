@@ -23,6 +23,15 @@ if(document.getElementsByName("password")[0] !== undefined) {
 if(document.getElementsByName("confirm")[0] !== undefined) {
     document.getElementsByName("confirm")[0].placeholder = "Confirm Password"
 }
+if(document.getElementsByName("title")[0] !== undefined) {
+    document.getElementsByName("title")[0].placeholder = "Title"
+}
+if(document.getElementsByName("date")[0] !== undefined) {
+    document.getElementsByName("date")[0].placeholder = "Date"
+}
+if(document.getElementsByName("description")[0] !== undefined) {
+    document.getElementsByName("description")[0].placeholder = "Description"
+}
 
 // let isDarkMode = false
 

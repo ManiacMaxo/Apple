@@ -10,8 +10,9 @@ class Task:
         self.user = user
 
     # 0 -> to do
-    # 1 -> completed
-    # 2 -> deleted
+    # 1 -> in progress
+    # 2 -> completed
+    # 3 -> deleted
 
     @staticmethod
     def all():
@@ -37,16 +38,46 @@ class Task:
             db.execute('''UPDATE tasks SET title = ?, description = ?, date = ?, state = ?, user = ? WHERE id = ?''', values)
             return self
 
-    def delete(self):
+    def get_to_do():
         with DB() as db:
-            db.execute('''DELETE FROM tasks WHERE id = ?''', (self.id,))
+            rows = db.execute('''SELECT * FROM tasks WHERE state = 0''').fetchall()
+            return [Task(*row) for row in rows]
 
-    def complete(self):
+    def get_in_progress():
+        with DB() as db:
+            rows = db.execute('''SELECT * FROM tasks WHERE state = 1''').fetchall()
+            return [Task(*row) for row in rows]
+
+    def get_completed():
+        with DB() as db:
+            rows = db.execute('''SELECT * FROM tasks WHERE state = 2''').fetchall()
+            return [Task(*row) for row in rows]
+
+    def get_deleted():
+        with DB() as db:
+            rows = db.execute('''SELECT * FROM tasks WHERE state = 3''').fetchall()
+            return [Task(*row) for row in rows]
+
+    def move_to_to_do(self):
+        with DB() as db:
+            self.state = 0
+            db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state, self.id))
+            return self
+
+    def move_to_in_progress(self):
         with DB() as db:
             self.state = 1
-            db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state,))
-            
-    def delete_from_tasks(self):
+            db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state, self.id))
+            return self
+
+    def move_to_completed(self):
         with DB() as db:
             self.state = 2
-            db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state,))
+            db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state, self.id))
+            return self
+            
+    def move_to_deleted(self):
+        with DB() as db:
+            self.state = 3
+            db.execute('''UPDATE tasks SET state = ? WHERE id = ?''', (self.state, self.id))
+            return self
