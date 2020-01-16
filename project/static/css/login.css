@@ -60,13 +60,14 @@
     text-decoration: underline;
 }
 
-.error-message {
-    color: #de071c;
-    display: none;
+.form ul {
+    list-style: none;
 }
 
-.error-message::before {
-    content: "!";
+.error-message {
+    color: #de071c;
+    margin-top: -5px;
+    font-weight: bold;
 }
 
 .active {
