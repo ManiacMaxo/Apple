@@ -48,13 +48,17 @@
             <div class="split middle">
                 <h1>In Progress</h1>
                 <ul class="in-progress-list">
-                    <li>Task In progress</li>
+                    {% for in_progress in all_in_progress %}
+                            <li>{{ in_progress.title }}</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="split right">
                 <h1>Completed</h1>
                 <ul class="completed-list">
-                    <li>Completed Task</li>
+                    {% for completed in all_completed %}
+                            <li>{{ completed.title }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

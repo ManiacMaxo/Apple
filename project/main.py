@@ -97,7 +97,14 @@ def logout():
 def show_tasks():
     user = User.find_by_email(session.get("EMAIL"))
     all_to_do = Task.get_to_do(user.id)
-    return render_template("tasks.html", user = user, all_to_do = all_to_do)
+    all_in_progress = Task.get_in_progress(user.id)
+    all_completed = Task.get_completed(user.id)
+    return render_template("tasks.html", 
+        user = user, 
+        all_to_do = all_to_do, 
+        all_in_progress = all_in_progress, 
+        all_completed = all_completed
+    )
 
 @app.route("/new_task", methods=["GET", "POST"])
 @require_login
