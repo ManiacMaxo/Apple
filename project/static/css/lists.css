@@ -38,36 +38,6 @@
     vertical-align: top;
 }
 
-.navigation-bar-left {
-    display: flex;
-    flex: 1 1 auto;
-    justify-content: flex-start;
-    align-self: center;
-    margin: 1%;
-}
-
-.navigation-bar-left a {
-    color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-    text-decoration: none;
-    padding: 0 30px 0 0
-}
-
-.active {
-    color: #a5a5a5;
-    cursor: default;
-    padding: 0 30px 0 0
-}
-
-.navigation-bar a {
-    color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-    text-decoration: none;
-    padding: 0 30px 0 0
-}
-
 #add-task {
     background: #0070c9;
     font-weight: bold;

@@ -89,6 +89,30 @@ header a {
     margin-right: 35px;
 }
 
+.navigation-bar-left {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    align-self: center;
+    margin: 1%;
+}
+
+.navigation-bar-left a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 0 30px 0 0
+}
+
+.navigation-bar a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 0 30px 0 0
+}
+
 /* sidenav bar styling */
 
 .sidenav {
@@ -143,20 +167,12 @@ header a {
     color: #111;
 }
 
-.page-content .p1 {
-    margin: 60px 10px 10px;
-    font-size: 45px;
-    font-weight: bold;
-    letter-spacing: 0.8;
-}
-
-.page-content .p2 {
-    margin: 10px;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 0.8;
-}
-
 .page-content {
     text-align: center;
+}
+
+.active {
+    color: #a5a5a5;
+    cursor: default;
+    padding: 0 30px 0 0
 }

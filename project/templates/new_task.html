@@ -12,7 +12,7 @@
         />
         <link 
             rel="stylesheet" 
-            href="{{ url_for('static', filename='css/lists.css') }}" 
+            href="{{ url_for('static', filename='css/login.css') }}" 
         />
         <link 
             rel="shortcut icon" 
@@ -39,12 +39,7 @@
                     {{ form.csrf_token }}
                     <h1>Create a New Task</h1>
                     {{ form.title }}
-                    <ul>
-                        {% for error in form.title.errors %}
-                            <li class="error-message">{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {{ form.deadline }}
+                    {{ form.date }}
                     {{ form.description }}
                     <button type="submit" id="button">Continue</button>
                 </form>

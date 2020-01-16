@@ -22,12 +22,6 @@
     <body id="body">
 
         <header>
-            <!-- <div id="sideNav" class="sidenav">
-                <a href="#">Lists</a>
-                <a href="#">Completed</a>
-                <a href="#">Deleted</a>
-            </div> -->
-        
             <nav class="navigation-bar-left">
                 <span class="active">Tasks</span>
                 <a href="#">Deleted</a>
@@ -44,10 +38,11 @@
                 <h1>To do</h1>
                 <ul class="to-do-list">
                     <li id="add-task" onclick="location.href='/new_task'">
-                        <!-- <a href="/new_task">Add Task</a> -->
                         Add Task
                     </li>
-                    <li>Second task</li>
+                    {% for to_do in all_to_do %}
+                            <li>{{ to_do.title }}</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="split middle">

@@ -25,12 +25,18 @@ if(document.getElementsByName("confirm")[0] !== undefined) {
 }
 if(document.getElementsByName("title")[0] !== undefined) {
     document.getElementsByName("title")[0].placeholder = "Title"
+    document.getElementsByName("title")[0].style.marginTop = "15px"
+    document.getElementsByName("title")[0].style.marginBottom = "15px"
 }
 if(document.getElementsByName("date")[0] !== undefined) {
     document.getElementsByName("date")[0].placeholder = "Date"
+    document.getElementsByName("date")[0].style.marginTop = "15px"
+    document.getElementsByName("date")[0].style.marginBottom = "15px"
 }
 if(document.getElementsByName("description")[0] !== undefined) {
     document.getElementsByName("description")[0].placeholder = "Description"
+    document.getElementsByName("description")[0].style.marginTop = "15px"
+    document.getElementsByName("description")[0].style.marginBottom = "15px"
 }
 
 // let isDarkMode = false

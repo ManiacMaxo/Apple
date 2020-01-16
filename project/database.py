@@ -18,8 +18,8 @@ conn.cursor().execute('''
 CREATE TABLE IF NOT EXISTS tasks
     (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        desciption TEXT,
+        title TEXT,
+        description TEXT,
         date TEXT,
         state INTEGER,
         user_id INTEGER,

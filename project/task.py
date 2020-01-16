@@ -1,13 +1,13 @@
 from database import DB
 
 class Task:
-    def __init__(self, id, title, description, date, state, user):
+    def __init__(self, id, title, description, date, state, user_id):
         self.id = id
         self.title = title
         self.description = description
         self.date = date
-        self.state = 0
-        self.user = user
+        self.state = state
+        self.user_id = user_id
 
     # 0 -> to do
     # 1 -> in progress
@@ -28,34 +28,34 @@ class Task:
 
     def create(self):
         with DB() as db:
-            values = (self.title, self.description, self.date, self.state, self.user)
-            db.execute('''INSERT INTO tasks (title, description, date, state, user) VALUES (?, ?, ?, ?, ?)''', values)
+            values = (self.title, self.description, self.date, self.state, self.user_id)
+            db.execute('''INSERT INTO tasks (title, description, date, state, user_id) VALUES (?, ?, ?, ?, ?)''', values)
             return self
 
     def save(self):
         with DB() as db:
-            values = (self.title, self.description, self.date, self.state, self.user, self.id)
-            db.execute('''UPDATE tasks SET title = ?, description = ?, date = ?, state = ?, user = ? WHERE id = ?''', values)
+            values = (self.title, self.description, self.date, self.state, self.user_id, self.id)
+            db.execute('''UPDATE tasks SET title = ?, description = ?, date = ?, state = ?, user_id = ? WHERE id = ?''', values)
             return self
 
-    def get_to_do():
+    def get_to_do(user_id):
         with DB() as db:
-            rows = db.execute('''SELECT * FROM tasks WHERE state = 0''').fetchall()
+            rows = db.execute('''SELECT * FROM tasks WHERE state = 0 AND user_id = ?''', (user_id,)).fetchall()
             return [Task(*row) for row in rows]
 
-    def get_in_progress():
+    def get_in_progress(user_id):
         with DB() as db:
-            rows = db.execute('''SELECT * FROM tasks WHERE state = 1''').fetchall()
+            rows = db.execute('''SELECT * FROM tasks WHERE state = 1 AND user_id = ?''', (user_id,)).fetchall()
             return [Task(*row) for row in rows]
 
-    def get_completed():
+    def get_completed(user_id):
         with DB() as db:
-            rows = db.execute('''SELECT * FROM tasks WHERE state = 2''').fetchall()
+            rows = db.execute('''SELECT * FROM tasks WHERE state = 2 AND user_id = ?''', (user_id,)).fetchall()
             return [Task(*row) for row in rows]
 
-    def get_deleted():
+    def get_deleted(user_id):
         with DB() as db:
-            rows = db.execute('''SELECT * FROM tasks WHERE state = 3''').fetchall()
+            rows = db.execute('''SELECT * FROM tasks WHERE state = 3 AND user_id = ?''', (user_id,)).fetchall()
             return [Task(*row) for row in rows]
 
     def move_to_to_do(self):

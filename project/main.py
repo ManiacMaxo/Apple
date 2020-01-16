@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_httpauth import HTTPBasicAuth
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, DateField, validators
+from functools import wraps
+from wtforms import StringField, PasswordField, validators
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import InputRequired, EqualTo, Length, NoneOf, ValidationError
 import os
@@ -17,6 +18,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 auth = HTTPBasicAuth()
 
 def require_login(func):
+    @wraps(func)
     def wrapper(*args, **kwargs):
         if not session.get("SIGNED_IN"):
             return redirect('/login')
@@ -43,8 +45,8 @@ class LoginForm(FlaskForm):
 
 class TaskForm(FlaskForm):
     title = StringField("title", [InputRequired()])
-    date = DateField()
-    description = StringField() 
+    date = StringField("date")
+    description = StringField("description") 
 
 
 @app.route("/")
@@ -94,16 +96,26 @@ def logout():
 @require_login
 def show_tasks():
     user = User.find_by_email(session.get("EMAIL"))
-    return render_template("tasks.html", user = user)
+    all_to_do = Task.get_to_do(user.id)
+    return render_template("tasks.html", user = user, all_to_do = all_to_do)
 
 @app.route("/new_task", methods=["GET", "POST"])
 @require_login
 def create_new_task():
-    form = TaskForm
+    form = TaskForm()
+    user = User.find_by_email(session.get("EMAIL"))
 
     if form.validate_on_submit():
-        user = User.find_by_email(session.get("EMAIL"))
+        values = (
+            None,
+            request.form["title"],
+            request.form["date"],
+            request.form["description"],
+            0,
+            user.id
+        )
+        Task(*values).create()
+        return redirect("/tasks")
 
-
-    return render_template("new_task.html", form = form)
+    return render_template("new_task.html", user = user, form = form)
 
