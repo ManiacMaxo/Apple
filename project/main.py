@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_httpauth import HTTPBasicAuth
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, validators
@@ -16,16 +16,25 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 auth = HTTPBasicAuth()
 
+def require_login(func):
+    def wrapper(*args, **kwargs):
+        if not session.get("SIGNED_IN"):
+            return redirect('/login')
+        return func(*args, **kwargs)
+    return wrapper
+
 def check_password(form, password):
     user = User.find_by_email(request.form["email"])               
     if not user or not user.verify_password(password.data):
         raise ValidationError("Incorrect Email or Password!")
+
 
 class RegistrationForm(FlaskForm):
     username = StringField("username", [InputRequired(message = "Username is required!")])
     email = EmailField("email", [InputRequired(message = "Email is required"), NoneOf(User.all_emails(), message = "An account with this email address already exists!")])
     password = PasswordField("password", [InputRequired(message = "Password is required!"), Length(min = 8, message = "Password must be at least 8 characters!")])
     confirm = PasswordField("confirm", [EqualTo("password", message = "Passwords must match!")])
+
 
 class LoginForm(FlaskForm):
     email = EmailField("email", [InputRequired(message = "Email is required!")])
@@ -39,7 +48,6 @@ def hello():
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():
-
     form = RegistrationForm()
 
     if form.validate_on_submit():
@@ -51,23 +59,33 @@ def register():
         )
         User(*values).create()
         user = User.find_by_email(request.form["email"])
-        return redirect(url_for("show_profile", id = user.id))
+        session["SIGNED_IN"] = True
+        session["EMAIL"] = request.form["email"]
+        return redirect("/tasks")
     
-    return render_template("register.html", form=form)
+    return render_template("register.html", form = form)
 
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
-
     form = LoginForm()
 
     if form.validate_on_submit():
-        return redirect(url_for("show_profile", id = user.id))
+        user = User.find_by_email(request.form["email"])
+        session["SIGNED_IN"] = True
+        session["EMAIL"] = request.form["email"]
+        return redirect("/tasks")
 
-    return render_template("login.html", form=form)
+    return render_template("login.html", form = form)
 
+@app.route("/logout")
+def logout():
+    session["SIGNED_IN"] = False
+    session["EMAIL"] = None
+    return redirect("/")
 
-@app.route("/profile/<int:id>")
-def show_profile(id):
-    user = User.find_by_id(id)
-    return render_template("profile.html", user = user)
+@app.route("/tasks")
+@require_login
+def show_tasks():
+    user = User.find_by_email(session.get("EMAIL"))
+    return render_template("tasks.html", user = user)

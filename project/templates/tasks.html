@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Apple</title>
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/style.css') }}" 
+        />
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/lists.css') }}" 
+        />
+        <link 
+            rel="shortcut icon" 
+            href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
+        />
+    </head>
+    <body id="body">
+
+        <header>
+            <div id="sideNav" class="sidenav">
+                <a href="#">Lists</a>
+                <a href="#">Completed</a>
+                <a href="#">Deleted</a>
+            </div>
+
+            <!-- TODO @Victor -->
+            <a class="btn" onclick="nav()">
+                <!-- <object
+                    data="{{ url_for('static', filename='assets/images/menu.svg') }}"
+                    type="image/svg+xml"
+                ></object> -->
+                <p> text </p>
+            </a>
+            <!-- TODO @Victor -->
+
+            <nav class="navigation-bar">
+                <p>Hi, {{ user.username }}!</p>
+                <a href="/logout"> Logout </a>
+            </nav>
+        </header>
+
+        <div class="page-content">
+            <div class="split left">
+                <h1>To do</h1>
+                <ul class="to-do-list">
+                    <li>Some task</li>
+                    <li>Second task</li>
+                </ul>
+            </div>
+            <div class="split middle">
+                <h1>In Progress</h1>
+                <ul class="in-progress-list">
+                    <li>Task In progress</li>
+                </ul>
+            </div>
+            <div class="split right">
+                <h1>Completed</h1>
+                <ul class="completed-list">
+                    <li>Completed Task</li>
+                </ul>
+            </div>
+        </div>
+
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='animations.js') }}"
+        ></script>
+
+    </body>
+</html>
