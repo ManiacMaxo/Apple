@@ -16,6 +16,12 @@ class User:
             return self
 
     @staticmethod
+    def all_emails():
+        with DB() as db:
+            rows = db.execute('SELECT * FROM users').fetchall()
+            return [User(*row).email for row in rows]
+
+    @staticmethod
     def find_by_email(email):
         if not email:
             return None

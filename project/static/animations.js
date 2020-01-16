@@ -33,6 +33,11 @@ function closeRegistration() {
     document.getElementById("backdrop").style.display = "none"
 }
 
+document.getElementsByName("username")[0].placeholder = "Username"
+document.getElementsByName("email")[0].placeholder = "Email"
+document.getElementsByName("password")[0].placeholder = "Password"
+document.getElementsByName("confirm")[0].placeholder = "Repeat Password"
+
 // let isDarkMode = false
 
 // function darkMode() {
