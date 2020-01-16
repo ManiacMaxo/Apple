@@ -3,7 +3,7 @@ from flask_httpauth import HTTPBasicAuth
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, validators
 from wtforms.fields.html5 import EmailField
-from wtforms.validators import InputRequired, EqualTo, Length, NoneOf
+from wtforms.validators import InputRequired, EqualTo, Length, NoneOf, ValidationError
 import os
 
 from task import Task
@@ -16,11 +16,20 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 auth = HTTPBasicAuth()
 
+def check_password(form, password):
+    user = User.find_by_email(request.form["email"])               
+    if not user or not user.verify_password(password.data):
+        raise ValidationError("Incorrect Email or Password!")
+
 class RegistrationForm(FlaskForm):
-    username = StringField("username", [InputRequired(message="Username is required!")])
-    email = EmailField("email", [InputRequired(message="Email is required"), NoneOf(User.all_emails(), message="An account with this email address already exists!")])
-    password = PasswordField("password", [InputRequired(message="Password is required!"), Length(min=8, message="Password must be at least 8 characters!")])
-    confirm = PasswordField("confirm", [EqualTo("password", message="Passwords must match!")])
+    username = StringField("username", [InputRequired(message = "Username is required!")])
+    email = EmailField("email", [InputRequired(message = "Email is required"), NoneOf(User.all_emails(), message = "An account with this email address already exists!")])
+    password = PasswordField("password", [InputRequired(message = "Password is required!"), Length(min = 8, message = "Password must be at least 8 characters!")])
+    confirm = PasswordField("confirm", [EqualTo("password", message = "Passwords must match!")])
+
+class LoginForm(FlaskForm):
+    email = EmailField("email", [InputRequired(message = "Email is required!")])
+    password = PasswordField("password", [InputRequired(message = "Password is required"), check_password])
 
 
 @app.route("/")
@@ -34,7 +43,6 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-
         values = (
             None,
             request.form["username"],
@@ -50,18 +58,13 @@ def register():
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
-    if request.method == "GET":
-        return render_template("login.html")
-    
-    elif request.method == "POST":
-        email = request.form["email"]
-        password = request.form["password"]
-        user = User.find_by_email(email)
-                
-        if user and user.verify_password(password):
-            return redirect(url_for("show_profile", id = user.id))
 
-        return redirect("/login")
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        return redirect(url_for("show_profile", id = user.id))
+
+    return render_template("login.html", form=form)
 
 
 @app.route("/profile/<int:id>")

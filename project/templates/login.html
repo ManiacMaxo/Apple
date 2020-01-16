@@ -46,22 +46,23 @@
         <div class="page-content">
             <div class="form">
                 <form action="/login" method="post">
+                    {{ form.csrf_token }}
                     <h1>Sign In</h1>
-                    <input
-                        name="email"
-                        type="email"
-                        placeholder="Email"
-                        id="email"
-                    />
-                    <input
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        id="pswd"
-                    />
-                    <button onclick="validate()">Sign in</button>
-                    <a href="/register">
-                        Don't have an account? Create one now!
+                    {{ form.email }}
+                    <ul>
+                        {% for error in form.email.errors %}
+                            <li style="color:red">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {{ form.password }}
+                    <ul>
+                        {% for error in form.password.errors %}
+                            <li style="color:red">{{ error }}</li>
+                        {% endfor %}
+                    </ul> 
+                    <button type="submit" id="button">Sign In</button>
+                    <a href="/login">
+                        Already have an account? Sign in.
                     </a>
                 </form>
             </div>
@@ -70,10 +71,6 @@
         <script
             type="text/javascript"
             src="{{ url_for('static', filename='animations.js') }}"
-        ></script>
-        <script
-            type="text/javascript"
-            src="{{ url_for('static', filename='security.js') }}"
         ></script>
     </body>
 </html>

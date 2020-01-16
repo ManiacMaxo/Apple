@@ -11,32 +11,18 @@ function nav() {
     }
 }
 
-function openLogin() {
-    closeRegistration()
-    document.getElementById("login-modal").style.display = "block"
-    document.getElementById("backdrop").style.display = "flex"
+if(document.getElementsByName("username")[0] !== undefined) {
+    document.getElementsByName("username")[0].placeholder = "Username"
 }
-
-function closeLogin() {
-    document.getElementById("login-modal").style.display = "none"
-    document.getElementById("backdrop").style.display = "none"
+if(document.getElementsByName("email")[0] !== undefined) {
+    document.getElementsByName("email")[0].placeholder = "Email"
 }
-
-function openRegistration() {
-    closeLogin()
-    document.getElementById("registration-modal").style.display = "block"
-    document.getElementById("backdrop").style.display = "flex"
+if(document.getElementsByName("password")[0] !== undefined) {
+    document.getElementsByName("password")[0].placeholder = "Password"
 }
-
-function closeRegistration() {
-    document.getElementById("registration-modal").style.display = "none"
-    document.getElementById("backdrop").style.display = "none"
+if(document.getElementsByName("confirm")[0] !== undefined) {
+    document.getElementsByName("confirm")[0].placeholder = "Confirm Password"
 }
-
-document.getElementsByName("username")[0].placeholder = "Username"
-document.getElementsByName("email")[0].placeholder = "Email"
-document.getElementsByName("password")[0].placeholder = "Password"
-document.getElementsByName("confirm")[0].placeholder = "Repeat Password"
 
 // let isDarkMode = false
 
