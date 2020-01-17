@@ -1,21 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_httpauth import HTTPBasicAuth
-from flask_wtf import FlaskForm
 from functools import wraps
-from wtforms import StringField, PasswordField, validators
-from wtforms.fields.html5 import EmailField
-from wtforms.validators import InputRequired, EqualTo, Length, NoneOf, ValidationError
 import os
 
-from task import Task
 from user import User
+from task import Task
+from log_config import info_logger, error_logger
+from form_config import check_password, RegistrationForm, LoginForm, TaskForm
 
 app = Flask(__name__)
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
-
-auth = HTTPBasicAuth()
 
 def require_login(func):
     @wraps(func)
@@ -24,29 +19,6 @@ def require_login(func):
             return redirect('/login')
         return func(*args, **kwargs)
     return wrapper
-
-def check_password(form, password):
-    user = User.find_by_email(request.form["email"])               
-    if not user or not user.verify_password(password.data):
-        raise ValidationError("Incorrect Email or Password!")
-
-
-class RegistrationForm(FlaskForm):
-    username = StringField("username", [InputRequired()])
-    email = EmailField("email", [InputRequired(), NoneOf(User.all_emails(), message = "An account with this email address already exists!")])
-    password = PasswordField("password", [InputRequired(), Length(min = 8, message = "Password must be at least 8 characters!")])
-    confirm = PasswordField("confirm", [EqualTo("password", message = "Passwords must match!")])
-
-
-class LoginForm(FlaskForm):
-    email = EmailField("email", [InputRequired(message = "Email is required!")])
-    password = PasswordField("password", [InputRequired(message = "Password is required"), check_password])
-
-
-class TaskForm(FlaskForm):
-    title = StringField("title", [InputRequired()])
-    date = StringField("date")
-    description = StringField("description") 
 
 
 @app.route("/")
@@ -69,7 +41,11 @@ def register():
         user = User.find_by_email(request.form["email"])
         session["SIGNED_IN"] = True
         session["EMAIL"] = request.form["email"]
+        info_logger.info("%s registered successfully", request.form['email'])
         return redirect("/tasks")
+    else:
+        if request.method == "POST":
+            error_logger.error("%s failed to register", request.form["email"])
     
     return render_template("register.html", form = form)
 
@@ -82,12 +58,17 @@ def login():
         user = User.find_by_email(request.form["email"])
         session["SIGNED_IN"] = True
         session["EMAIL"] = request.form["email"]
+        info_logger.info("%s logined in successfully", request.form['email'])
         return redirect("/tasks")
-
+    else:
+        if request.method == "POST":
+            error_logger.error("%s failed to log in", request.form["email"])
+    
     return render_template("login.html", form = form)
 
 @app.route("/logout")
 def logout():
+    info_logger.info("%s logged out successfully", session.get("EMAIL"))
     session["SIGNED_IN"] = False
     session["EMAIL"] = None
     return redirect("/")
@@ -124,8 +105,11 @@ def create_new_task():
             user.id
         )
         Task(*values).create()
+        info_logger.info("Task with title(%s) created successfully", request.form["title"])
         return redirect("/tasks")
-
+    else:
+        error_logger.error("Task couldn't be created")
+    
     return render_template("new_task.html", user = user, form = form)
 
 
@@ -148,8 +132,11 @@ def edit_task(id):
         task.date = request.form["date"]
         task.description = request.form["description"]
         task.save()
+        info_logger.info("Task with title(%s) edited successfully", request.form["title"])
         return redirect("/tasks")
-
+    else:
+        error_logger.error("Task couldn't be edited")
+    
     return render_template("edit_task.html", user = user, form = form, task_id = task.id)
 
 @app.route("/deleted")
@@ -169,9 +156,11 @@ def to_do(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
+        error_logger.error("Forbidden access")
         return redirect("/login")
 
     task.move_to_to_do()
+    info_logger.info("Task with title(%s) moved to to_do successfully", task.title)
     return redirect("/tasks")
 
 
@@ -181,9 +170,11 @@ def in_progress(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
+        error_logger.error("Forbidden access")
         return redirect("/login")
 
     task.move_to_in_progress()
+    info_logger.info("Task with title(%s) moved to in_progress successfully", task.title)
     return redirect("/tasks")
 
 
@@ -193,9 +184,11 @@ def completed(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
+        error_logger.error("Forbidden access")
         return redirect("/login")
 
     task.move_to_completed()
+    info_logger.info("Task with title(%s) moved to completed successfully", task.title)
     return redirect("/tasks")
 
 
@@ -205,7 +198,9 @@ def deleted(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
+        error_logger.error("Forbidden access")
         return redirect("/login")
 
     task.move_to_deleted()
+    info_logger.info("Task with title(%s) moved to deleted successfully", task.title)
     return redirect("/tasks")
