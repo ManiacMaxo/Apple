@@ -159,7 +159,7 @@ def show_deleted():
     all_deleted = Task.get_deleted(user.id)
     return render_template("tasks.html", 
         user = user, 
-        all_deleted = deleted
+        all_deleted = all_deleted
     )
 
 
