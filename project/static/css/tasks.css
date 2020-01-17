@@ -4,12 +4,17 @@
     margin: auto 5%;
 }
 
-.page-content ul {
+.list {
     display: inline;
     list-style: none;
 }
 
-.page-content li {
+.list li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.list li:not(.button-holder) {
     background: #302f2f;
     color: #f1f1f1;
     margin: 10px auto;
@@ -38,17 +43,12 @@
     vertical-align: top;
 }
 
-#add-task {
-    background: #0070c9;
+.add-task {
+    background: linear-gradient(#42a1ec, #0070c9);
     font-weight: bold;
     cursor: pointer;
 }
 
-#add-task:hover {
+.add-task:hover {
     background: #0050a9;
-}
-
-#add-task a {
-    color: #111;
-    text-decoration: none;
 }

@@ -6,29 +6,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
-        <link 
-            rel="stylesheet" 
-            href="{{ url_for('static', filename='css/style.css') }}" 
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
         />
-        <link 
-            rel="stylesheet" 
-            href="{{ url_for('static', filename='css/lists.css') }}" 
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/tasks.css') }}"
         />
-        <link 
-            rel="shortcut icon" 
+        <link
+            rel="shortcut icon"
             href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
         />
     </head>
     <body id="body">
-
         <header>
-            <nav class="navigation-bar-left">
-                <span class="active">Tasks</span>
-                <a href="#">Deleted</a>
+            <nav class="navigation-bar left-nav">
+                <ul>
+                    <li>
+                        <span class="active">Tasks</span>
+                    </li>
+                    <li>
+                        <a href="/deleted">Deleted</a>
+                    </li>
+                </ul>
             </nav>
 
-            <nav class="navigation-bar">
-                <p>Hi, {{ user.username }}!</p>
+            <nav class="navigation-bar right-nav">
+                <span>Hi, {{ user.username }}!</span>
                 <a href="/logout"> Logout </a>
             </nav>
         </header>
@@ -36,40 +41,44 @@
         <div class="page-content">
             <div class="split left">
                 <h1>To do</h1>
-                <ul class="to-do-list">
-                    <li id="add-task" onclick="location.href='/new_task'">
-                        Add Task
-                    </li>
+                <ul class="list">
                     {% for to_do in all_to_do %}
-                            <li>
-                                <a href="/edit_task/{{ to_do.id }}">
-                                    {{ to_do.title }}
-                                </a>
-                            </li>
+                    <li>
+                        <a href="/edit_task/{{ to_do.id }}">
+                            {{ to_do.title }}
+                        </a>
+                    </li>
                     {% endfor %}
+                    <li class="button-holder">
+                        <button class="button" style="max-width: 330px;">
+                            <a href="/new_task">
+                                Add Task
+                            </a>
+                        </button>
+                    </li>
                 </ul>
             </div>
             <div class="split middle">
                 <h1>In Progress</h1>
-                <ul class="in-progress-list">
+                <ul class="list">
                     {% for in_progress in all_in_progress %}
-                            <li>
-                                <a href="/edit_task/{{ in_progress.id }}">
-                                    {{ in_progress.title }}
-                                </a>
-                            </li>
+                    <li>
+                        <a href="/edit_task/{{ in_progress.id }}">
+                            {{ in_progress.title }}
+                        </a>
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="split right">
                 <h1>Completed</h1>
-                <ul class="completed-list">
+                <ul class="list">
                     {% for completed in all_completed %}
-                            <li>
-                                <a href="/edit_task/{{ completed.id }}">
-                                    {{ completed.title }}
-                                </a>
-                            </li>
+                    <li>
+                        <a href="/edit_task/{{ completed.id }}">
+                            {{ completed.title }}
+                        </a>
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -79,6 +88,5 @@
             type="text/javascript"
             src="{{ url_for('static', filename='animations.js') }}"
         ></script>
-
     </body>
 </html>

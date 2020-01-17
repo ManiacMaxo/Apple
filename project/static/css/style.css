@@ -63,6 +63,14 @@ header a {
     margin: 1%;
 }
 
+.right-nav {
+    justify-content: flex-end;
+}
+
+.left-nav {
+    justify-content: flex-start;
+}
+
 .navigation-bar ul {
     margin: 0;
     padding: 0;
@@ -82,35 +90,11 @@ header a {
     text-decoration: none;
 }
 
-.navigation-bar p {
-    color: #fff;
-    font-size: 15px;
-    font-weight: bold;
-    margin-right: 35px;
-}
-
-.navigation-bar-left {
-    display: flex;
-    flex: 1 1 auto;
-    justify-content: flex-start;
-    align-self: center;
-    margin: 1%;
-}
-
-.navigation-bar-left a {
-    color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-    text-decoration: none;
-    padding: 0 30px 0 0
-}
-
 .navigation-bar a {
     color: #fff;
     font-size: 15px;
     font-weight: 400;
     text-decoration: none;
-    padding: 0 30px 0 0
 }
 
 /* sidenav bar styling */
@@ -174,5 +158,30 @@ header a {
 .active {
     color: #a5a5a5;
     cursor: default;
-    padding: 0 30px 0 0
+}
+
+/*  Universal buttons */
+
+button {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    background-color: #0070c9;
+    background: linear-gradient(#42a1ec, #0070c9);
+    border: 1px solid #07c;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    min-width: 30px;
+    padding: 4px 15px;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+button:hover,
+button:focus {
+    background: linear-gradient(rgb(66, 169, 252), rgb(0, 120, 217));
 }

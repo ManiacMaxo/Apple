@@ -27,30 +27,6 @@
     box-shadow: 0 0 0 3px rgba(131, 192, 253, 0.5);
 }
 
-.form button {
-    font-size: 17px;
-    line-height: 1.47059;
-    font-weight: 400;
-    letter-spacing: -0.022em;
-    background-color: #0070c9;
-    background: linear-gradient(#42a1ec, #0070c9);
-    border: 1px solid #07c;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
-    min-width: 30px;
-    padding: 4px 15px;
-    text-align: center;
-    white-space: nowrap;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.form button:hover,
-.form button:focus {
-    background: linear-gradient(rgb(66, 169, 252), rgb(0, 120, 217));
-}
-
 .form a {
     color: #0070c9;
     text-decoration: none;
@@ -87,7 +63,7 @@
 
 .state-button a {
     color: #111;
-    text-decoration: none
+    text-decoration: none;
 }
 
 #cancel {
