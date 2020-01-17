@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Apple</title>
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/style.css') }}" 
+        />
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/lists.css') }}" 
+        />
+        <link 
+            rel="shortcut icon" 
+            href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
+        />
+    </head>
+    <body id="body">
+
+        <header>
+            <nav class="navigation-bar-left">
+                <span class="active">Tasks</span>
+                <a href="#">Deleted</a>
+            </nav>
+
+            <nav class="navigation-bar">
+                <p>Hi, {{ user.username }}!</p>
+                <a href="/logout"> Logout </a>
+            </nav>
+        </header>
+
+        <div class="page-content">
+            <div class="split middle">
+                <h1>Deleted</h1>
+                <ul class="deleted-list">
+                    {% for deleted in all_deleted %}
+                            <li>
+                                <a href="/edit_task/{{ deleted.id }}">
+                                    {{ deleted.title }}
+                                </a>
+                            </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='animations.js') }}"
+        ></script>
+
+    </body>
+</html>

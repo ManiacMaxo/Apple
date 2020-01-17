@@ -129,7 +129,7 @@ def create_new_task():
     return render_template("new_task.html", user = user, form = form)
 
 
-@app.route("/edit_task/<int:id>", methods=["GET", "POST"])
+@app.route("/edit_task/<int:id>", methods = ["GET", "POST"])
 @require_login
 def edit_task(id):
     task = Task.find_by_id(id)
@@ -151,6 +151,16 @@ def edit_task(id):
         return redirect("/tasks")
 
     return render_template("edit_task.html", user = user, form = form, task_id = task.id)
+
+@app.route("/deleted")
+@require_login
+def show_deleted():
+    user = User.find_by_email(session.get("EMAIL"))
+    all_deleted = Task.get_deleted(user.id)
+    return render_template("tasks.html", 
+        user = user, 
+        all_deleted = deleted
+    )
 
 
 @app.route("/to_do/<int:id>")
