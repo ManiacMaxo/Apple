@@ -159,7 +159,7 @@ def to_do(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
-        redirect("/login")
+        return redirect("/login")
 
     task.move_to_to_do()
     return redirect("/tasks")
@@ -171,7 +171,7 @@ def in_progress(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
-        redirect("/login")
+        return redirect("/login")
 
     task.move_to_in_progress()
     return redirect("/tasks")
@@ -183,7 +183,7 @@ def completed(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
-        redirect("/login")
+        return redirect("/login")
 
     task.move_to_completed()
     return redirect("/tasks")
@@ -195,7 +195,7 @@ def deleted(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
-        redirect("/login")
+        return redirect("/login")
 
     task.move_to_deleted()
     return redirect("/tasks")
