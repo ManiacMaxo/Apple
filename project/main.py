@@ -105,10 +105,8 @@ def create_new_task():
             user.id
         )
         Task(*values).create()
-        info_logger.info("Task with title(%s) created successfully", request.form["title"])
+        info_logger.info("Task with title %s created successfully", request.form["title"])
         return redirect("/tasks")
-    else:
-        error_logger.error("Task couldn't be created")
     
     return render_template("new_task.html", user = user, form = form)
 
@@ -132,10 +130,8 @@ def edit_task(id):
         task.date = request.form["date"]
         task.description = request.form["description"]
         task.save()
-        info_logger.info("Task with title(%s) edited successfully", request.form["title"])
+        info_logger.info("Task with title %s edited successfully", request.form["title"])
         return redirect("/tasks")
-    else:
-        error_logger.error("Task couldn't be edited")
     
     return render_template("edit_task.html", user = user, form = form, task_id = task.id)
 
@@ -144,7 +140,7 @@ def edit_task(id):
 def show_deleted():
     user = User.find_by_email(session.get("EMAIL"))
     all_deleted = Task.get_deleted(user.id)
-    return render_template("tasks.html", 
+    return render_template("deleted.html", 
         user = user, 
         all_deleted = all_deleted
     )
@@ -156,11 +152,11 @@ def to_do(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
-        error_logger.error("Forbidden access")
+        error_logger.error("Couldn't move task with title %s to to_do. Forbidden access", task.title)
         return redirect("/login")
 
     task.move_to_to_do()
-    info_logger.info("Task with title(%s) moved to to_do successfully", task.title)
+    info_logger.info("Task with title %s moved to to_do successfully", task.title)
     return redirect("/tasks")
 
 
@@ -170,11 +166,11 @@ def in_progress(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
-        error_logger.error("Forbidden access")
+        error_logger.error("Couldn't move task with title %s to in_progress. Forbidden access", task.title)
         return redirect("/login")
 
     task.move_to_in_progress()
-    info_logger.info("Task with title(%s) moved to in_progress successfully", task.title)
+    info_logger.info("Task with title %s moved to in_progress successfully", task.title)
     return redirect("/tasks")
 
 
@@ -184,11 +180,11 @@ def completed(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
-        error_logger.error("Forbidden access")
+        error_logger.error("Couldn't move task with title %s to completed. Forbidden access", task.title)
         return redirect("/login")
 
     task.move_to_completed()
-    info_logger.info("Task with title(%s) moved to completed successfully", task.title)
+    info_logger.info("Task with title %s moved to completed successfully", task.title)
     return redirect("/tasks")
 
 
@@ -198,9 +194,9 @@ def deleted(id):
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
     if user.id != task.user_id:
-        error_logger.error("Forbidden access")
+        error_logger.error("Couldn't move task with title %s to deleted. Forbidden access", task.title)
         return redirect("/login")
 
     task.move_to_deleted()
-    info_logger.info("Task with title(%s) moved to deleted successfully", task.title)
+    info_logger.info("Task with title %s moved to deleted successfully", task.title)
     return redirect("/tasks")
