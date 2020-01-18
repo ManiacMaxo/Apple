@@ -21,6 +21,7 @@
     </head>
     <body id="body">
         <header>
+            
             <nav class="navigation-bar left-nav">
                 <ul>
                     <li>
@@ -36,9 +37,17 @@
             </nav>
 
             <nav class="navigation-bar right-nav">
-                <span>Hi, {{ user.username }}!</span>
-                <a href="/logout"> Logout </a>
+                <li>
+                    <span>Hi, {{ user.username }}!</span>
+                </li>
+                <li>
+                    <a href="/edit_profile/{{ user.id }}">Profile</a>
+                </li>
+                <li>
+                    <a href="/logout">Logout</a>
+                </li>
             </nav>
+
         </header>
 
         <div class="page-content">
@@ -89,7 +98,7 @@
 
         <script
             type="text/javascript"
-            src="{{ url_for('static', filename='animations.js') }}"
+            src="{{ url_for('static', filename='main.js') }}"
         ></script>
     </body>
 </html>

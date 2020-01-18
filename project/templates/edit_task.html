@@ -39,7 +39,7 @@
                     {{ form.csrf_token }}
                     <h1>Edit This Task</h1>
                     {{ form.title }}
-                    {{ form.date }}
+                    {{ form.deadline }}
                     {{ form.description }}
                     <button type="submit" id="button">Save</button>
                     <div class="state-button" id="cancel">
@@ -60,7 +60,7 @@
 
         <script
             type="text/javascript"
-            src="{{ url_for('static', filename='animations.js') }}"
+            src="{{ url_for('static', filename='main.js') }}"
         ></script>
 
     </body>

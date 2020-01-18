@@ -12,7 +12,7 @@
         />
         <link 
             rel="stylesheet" 
-            href="{{ url_for('static', filename='css/lists.css') }}" 
+            href="{{ url_for('static', filename='css/login.css') }}" 
         />
         <link 
             rel="shortcut icon" 
@@ -24,8 +24,7 @@
         <header>
             <nav class="navigation-bar-left">
                 <a href="/tasks">Tasks</a>
-                <span class="active">Deleted</span>
-                <a href="/projects">Projects</a>
+                <a href="#">Deleted</a>
             </nav>
 
             <nav class="navigation-bar">
@@ -35,17 +34,16 @@
         </header>
 
         <div class="page-content">
-            <div class="split middle">
-                <h1>Deleted</h1>
-                <ul class="deleted-list">
-                    {% for deleted in all_deleted %}
-                            <li>
-                                <a href="/edit_deleted_task/{{ deleted.id }}">
-                                    {{ deleted.title }}
-                                </a>
-                            </li>
-                    {% endfor %}
-                </ul>
+            <div class="form">
+                <form action="/edit_deleted_task/{{ task_id }}" method="post">
+                    <h1>Edit This Task</h1>
+                    <p>{{ info.title }}</p>
+                    <p>{{ info.deadline }}</p>
+                    <p>{{ info.description }}</p>
+                    <div class="state-button" id="cancel">
+                        <a href="/to_do/{{ task_id }}">Recover Task</a>
+                    </div>
+                </form>
             </div>
         </div>
 

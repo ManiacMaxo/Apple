@@ -11,6 +11,7 @@ function nav() {
     }
 }
 
+// puts placeholders and sets margins
 if(document.getElementsByName("username")[0] !== undefined) {
     document.getElementsByName("username")[0].placeholder = "Username"
 }
@@ -28,26 +29,13 @@ if(document.getElementsByName("title")[0] !== undefined) {
     document.getElementsByName("title")[0].style.marginTop = "15px"
     document.getElementsByName("title")[0].style.marginBottom = "15px"
 }
-if(document.getElementsByName("date")[0] !== undefined) {
-    document.getElementsByName("date")[0].placeholder = "Date"
-    document.getElementsByName("date")[0].style.marginTop = "15px"
-    document.getElementsByName("date")[0].style.marginBottom = "15px"
+if(document.getElementsByName("deadline")[0] !== undefined) {
+    document.getElementsByName("deadline")[0].placeholder = "Deadline"
+    document.getElementsByName("deadline")[0].style.marginTop = "15px"
+    document.getElementsByName("deadline")[0].style.marginBottom = "15px"
 }
 if(document.getElementsByName("description")[0] !== undefined) {
     document.getElementsByName("description")[0].placeholder = "Description"
     document.getElementsByName("description")[0].style.marginTop = "15px"
     document.getElementsByName("description")[0].style.marginBottom = "15px"
 }
-
-// let isDarkMode = false
-
-// function darkMode() {
-//     const backdrop = document.getElementById("body").style.background
-//     if (isDarkMode) {
-//         isDarkMode = true
-//         backdrop = "#313131"
-//     } else {
-//         isDarkMode = false
-//         backdrop = "#fafafa"
-//     }
-// }

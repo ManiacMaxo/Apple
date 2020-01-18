@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Apple</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/tasks.css') }}"
+        />
+        <link
+            rel="shortcut icon"
+            href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
+        />
+    </head>
+    <body id="body">
+        <header>
+            <nav class="navigation-bar left-nav">
+                <ul>
+                    <li>
+                        <a href="/tasks">Tasks</a>
+                    </li>
+                    <li>
+                        <a href="/deleted">Deleted</a>
+                    </li>
+                    <li>
+                        <a href="/projects">Projects</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav class="navigation-bar right-nav">
+                <li>
+                    <span>Hi, {{ user.username }}!</span>
+                </li>
+                <li>
+                    <span class="active">Profile</span>
+                </li>
+                <li>
+                    <a href="/logout">Logout</a>
+                </li>
+            </nav>
+        </header>
+
+        <div class="page-content">
+            {{ form.csrf_token }}
+            <h1>Create Your Account</h1>
+            {{ form.username }}
+            <ul>
+                {% for error in form.username.errors %}
+                    <li class="error-message">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <p>{{ form.email }}</p>
+            {{ form.password }}
+            <ul>
+                {% for error in form.password.errors %}
+                    <li class="error-message">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {{ form.confirm }}
+            <ul>
+                {% for error in form.confirm.errors %}
+                    <li class="error-message">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <button type="submit" id="button">Continue</button>
+        </div>
+
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='main.js') }}"
+        ></script>
+    </body>
+</html>

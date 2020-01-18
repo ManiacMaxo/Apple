@@ -20,19 +20,10 @@ CREATE TABLE IF NOT EXISTS tasks
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
         description TEXT,
-        date TEXT,
-        state INTEGER
-    )
-''')
-
-conn.cursor().execute('''
-CREATE TABLE IF NOT EXISTS links
-    (
+        deadline TEXT,
+        state INTEGER,
         user_id INTEGER,
-        task_id INTEGER,
-        PRIMARY KEY(user_id, task_id),
-        FOREIGN KEY(user_id) REFERENCES users(id),
-        FOREIGN KEY(task_id) REFERENCES tasks(id)
+        FOREIGN KEY(user_id) REFERENCES users(id)
     )
 ''')
 
