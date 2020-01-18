@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_NAME = 'example.db'
+DB_NAME = 'database.db'
 
 conn = sqlite3.connect(DB_NAME)
 
@@ -24,6 +24,27 @@ CREATE TABLE IF NOT EXISTS tasks
         state INTEGER,
         user_id INTEGER,
         FOREIGN KEY(user_id) REFERENCES users(id)
+    )
+''')
+
+conn.cursor().execute('''
+CREATE TABLE IF NOT EXISTS projects
+    (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT,
+        owner INTEGER,
+        FOREIGN KEY(owner) REFERENCES users(id)
+    )
+''')
+
+conn.cursor().execute('''
+CREATE TABLE IF NOT EXISTS links
+    (
+        user_id INTEGER,
+        project_id INTEGER,
+        PRIMARY KEY(user_id, project_id),
+        FOREIGN KEY(user_id) REFERENCES users(id),
+        FOREIGN KEY(project_id) REFERENCES projects(id)
     )
 ''')
 
