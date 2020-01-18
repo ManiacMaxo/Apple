@@ -20,17 +20,33 @@
         />
     </head>
     <body id="body">
-
         <header>
-            <nav class="navigation-bar-left">
-                <a href="/tasks">Tasks</a>
-                <a href="#">Deleted</a>
+            
+            <nav class="navigation-bar left-nav">
+                <ul>
+                    <li>
+                        <a href="/tasks">Tasks</a>
+                    </li>
+                    <li>
+                        <a href="/deleted">Deleted</a>
+                    </li>    
+                </ul>
             </nav>
 
-            <nav class="navigation-bar">
-                <p>Hi, {{ user.username }}!</p>
-                <a href="/logout"> Logout </a>
+            <nav class="navigation-bar right-nav">
+                <ul>
+                    <li>
+                        <span class="name">Hi, {{ user.username }}!</span>
+                    </li>
+                    <li>
+                        <a href="/edit_profile/{{ user.id }}">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                </ul>
             </nav>
+
         </header>
 
         <div class="page-content">

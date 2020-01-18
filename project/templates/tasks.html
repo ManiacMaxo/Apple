@@ -30,22 +30,21 @@
                     <li>
                         <a href="/deleted">Deleted</a>
                     </li>
-                    <li>
-                        <a href="/projects">Projects</a>
-                    </li>
                 </ul>
             </nav>
 
             <nav class="navigation-bar right-nav">
-                <li>
-                    <span>Hi, {{ user.username }}!</span>
-                </li>
-                <li>
-                    <a href="/edit_profile/{{ user.id }}">Profile</a>
-                </li>
-                <li>
-                    <a href="/logout">Logout</a>
-                </li>
+                <ul>
+                    <li>
+                        <span class="name">Hi, {{ user.username }}!</span>
+                    </li>
+                    <li>
+                        <a href="/edit_profile/{{ user.id }}">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                </ul>
             </nav>
 
         </header>

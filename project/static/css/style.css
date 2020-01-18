@@ -90,54 +90,14 @@ header a {
     text-decoration: none;
 }
 
-.navigation-bar a {
-    color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-    text-decoration: none;
+.active {
+    color: #a5a5a5;
+    cursor: default;
 }
 
-/* sidenav bar styling */
-
-.sidenav {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    z-index: 1;
-    top: 5.5%;
-    left: 0;
-    background-color: #282828;
-    overflow-x: hidden;
-    transition: 0.2s;
-    padding: 60px 0 0;
-    transform: translateX(-250px);
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #b2d8d8;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: #008080;
-}
-
-/* backdrop for modals */
-
-.backdrop {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.4);
+.name {
+    color: #0070c9;
+    cursor: default;
 }
 
 /* main content styling */
@@ -153,11 +113,6 @@ header a {
 
 .page-content {
     text-align: center;
-}
-
-.active {
-    color: #a5a5a5;
-    cursor: default;
 }
 
 /*  Universal buttons */

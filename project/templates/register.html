@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
-
         <link
             rel="stylesheet"
             href="{{ url_for('static', filename='css/style.css') }}"
@@ -22,14 +21,15 @@
     </head>
 
     <body>
-
         <header>
+
             <a href="/">
                 <img
                     src="{{ url_for('static', filename='assets/images/apple.svg') }}"
                 />
             </a>
-            <nav class="navigation-bar">
+
+            <nav class="navigation-bar right-nav">
                 <ul>
                     <li>
                         <a href="/login">Sign In</a>
@@ -39,6 +39,7 @@
                     </li>
                 </ul>
             </nav>
+            
         </header>
 
         <div class="page-content">
