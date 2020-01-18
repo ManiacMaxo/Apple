@@ -20,12 +20,6 @@ class Task:
             rows = db.execute('''SELECT * FROM tasks''').fetchall()
             return [Task(*row) for row in rows]
 
-    @staticmethod
-    def find(id):
-        with DB() as db:
-            row = db.execute('''SELECT * FROM tasks WHERE id = ?''',(id,)).fetchone()
-            return Task(*row)
-
     def create(self):
         with DB() as db:
             values = (self.title, self.description, self.date, self.state, self.user_id)

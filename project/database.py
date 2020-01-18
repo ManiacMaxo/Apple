@@ -21,19 +21,7 @@ CREATE TABLE IF NOT EXISTS tasks
         title TEXT,
         description TEXT,
         date TEXT,
-        state INTEGER,
-        user_id INTEGER,
-        FOREIGN KEY(user_id) REFERENCES users(id)
-    )
-''')
-
-conn.cursor().execute('''
-CREATE TABLE IF NOT EXISTS projects
-    (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT,
-        owner INTEGER,
-        FOREIGN KEY(owner) REFERENCES users(id)
+        state INTEGER
     )
 ''')
 
@@ -41,10 +29,10 @@ conn.cursor().execute('''
 CREATE TABLE IF NOT EXISTS links
     (
         user_id INTEGER,
-        project_id INTEGER,
-        PRIMARY KEY(user_id, project_id),
+        task_id INTEGER,
+        PRIMARY KEY(user_id, task_id),
         FOREIGN KEY(user_id) REFERENCES users(id),
-        FOREIGN KEY(project_id) REFERENCES projects(id)
+        FOREIGN KEY(task_id) REFERENCES tasks(id)
     )
 ''')
 
