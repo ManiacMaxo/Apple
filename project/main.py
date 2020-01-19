@@ -206,7 +206,7 @@ def edit_task(id):
 
     # defined in form_config.py
     # same form as in new_task, because it is the same thing
-    form = TaskForm(state = task.state)
+    form = TaskForm()
 
     # if wrong user is logged, so he can't access other users' tasks
     if user.id != task.user_id:
@@ -217,6 +217,7 @@ def edit_task(id):
     form.title.data = task.title
     form.deadline.data = task.deadline
     form.description.data = task.description
+    form.state.default = task.state
 
     # if form is valid
     if form.validate_on_submit():

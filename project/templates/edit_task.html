@@ -60,9 +60,10 @@
                     </div>
 
                     <span>Change state of task: </span>
+                    <!-- {{ form.state }} -->
                     <select name="state">
                         {% for id, state in form.state.choices %}
-                            <option value="{{ id }}" {% if form.state == id %} selected {% endif %}>
+                            <option value="{{ id }}" {% if form.state.default == id %} selected {% endif %}>
                                 {{ state }}
                             </option>
                         {% endfor %}

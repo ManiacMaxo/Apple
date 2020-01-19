@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS tasks
         title TEXT,
         description TEXT,
         deadline TEXT,
-        state INTEGER,
+        state TEXT,
         user_id INTEGER,
         FOREIGN KEY(user_id) REFERENCES users(id)
     )

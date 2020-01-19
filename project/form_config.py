@@ -42,12 +42,12 @@ class TaskForm(FlaskForm):
     # title -> input type - string, required
     title = StringField("title", [InputRequired()])
 
+    # decription -> input type - string, optional
+    description = StringField("description")
+
     # deadline -> input type - string
     # the input type is string because every user has their own choice on how to set the deadline
     deadline = StringField("deadline")
 
-    # decription -> input type - string, optional
-    description = StringField("description")
-
     # state -> input type - select
-    state = SelectField("state", choices = [(0, "To Do"), (1, "In Progress"), (2, "Completed"), (3, "Deleted")], coerce = int) 
+    state = SelectField("state", choices = [('0', "To Do"), ('1', "In Progress"), ('2', "Completed"), ('3', "Deleted")]) 
