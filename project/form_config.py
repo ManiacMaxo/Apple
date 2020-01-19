@@ -37,6 +37,20 @@ class LoginForm(FlaskForm):
     # password -> input type - password, verification if password is correct in db
     password = PasswordField("password", [InputRequired(message = "Password is required"), check_password])
 
+# edit profile form
+class EditProfileForm(FlaskForm):
+    # username -> input type - string, required
+    username = StringField("username", [InputRequired()])
+
+    # email -> input type - email, required, unique
+    email = EmailField("email")
+
+    # password -> input type - password, required, at least 8 characters long
+    password = PasswordField("password", [InputRequired(), Length(min = 8, message = "Password must be at least 8 characters!")])
+
+    # confirm -> input type - password, equal to password
+    confirm = PasswordField("confirm", [EqualTo("password", message = "Passwords must match!")])
+
 # create task form
 class TaskForm(FlaskForm):
     # title -> input type - string, required

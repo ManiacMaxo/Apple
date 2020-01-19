@@ -27,14 +27,12 @@ class Task:
         with DB() as db:
             values = (self.title, self.description, self.deadline, self.state, self.user_id)
             db.execute('''INSERT INTO tasks (title, description, deadline, state, user_id) VALUES (?, ?, ?, ?, ?)''', values)
-            return self
 
     # update a task
     def save(self):
         with DB() as db:
             values = (self.title, self.description, self.deadline, self.state, self.user_id, self.id)
             db.execute('''UPDATE tasks SET title = ?, description = ?, deadline = ?, state = ?, user_id = ? WHERE id = ?''', values)
-            return self
 
     # find task by id
     @staticmethod
