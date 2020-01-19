@@ -179,11 +179,12 @@ def create_new_task():
         values = (
             None,
             request.form["title"],
-            request.form["deadline"],
             request.form["description"],
-            0,
+            request.form["deadline"],
+            request.form["state"],
             user.id
         )
+        print(values)
         Task(*values).create()
 
         # success log
@@ -199,13 +200,13 @@ def create_new_task():
 @app.route("/edit_task/<int:id>", methods = ["GET", "POST"])
 @require_login
 def edit_task(id):
-    # defined in form_config.py
-    # same form as in new_task, because it is the same thing
-    form = TaskForm()
-
     # get task and the user who has the task
     task = Task.find_by_id(id)
     user = User.find_by_email(session.get("EMAIL"))
+
+    # defined in form_config.py
+    # same form as in new_task, because it is the same thing
+    form = TaskForm(state = task.state)
 
     # if wrong user is logged, so he can't access other users' tasks
     if user.id != task.user_id:
@@ -220,6 +221,7 @@ def edit_task(id):
     # if form is valid
     if form.validate_on_submit():
         # get new task information and save it
+        task.state = request.form["state"]
         task.title = request.form["title"]
         task.deadline = request.form["deadline"]
         task.description = request.form["description"]
@@ -231,7 +233,7 @@ def edit_task(id):
         return redirect("/tasks")
     
     # template edit task form
-    return render_template("edit_task.html", user = user, form = form, task_id = task.id)
+    return render_template("edit_task.html", user = user, form = form, task = task)
 
 
 # page for listing deleted tasks
@@ -265,99 +267,3 @@ def edit_deleted_task(id):
 
     # template edit task form
     return render_template("edit_deleted_task.html", user = user, info = info, task_id = task.id)
-
-
-# page for moving a task to to_do
-@app.route("/to_do/<int:id>")
-@require_login
-def to_do(id):
-    # get user and task
-    task = Task.find_by_id(id)
-    user = User.find_by_email(session.get("EMAIL"))
-
-    # check if the task belongs to the logged user
-    if user.id != task.user_id:
-        # error log
-        error_logger.error("Couldn't move with title %s couldn't be edited. Forbidden access", task.title)
-        
-        return redirect('/tasks')
-    
-    # move the task to to_do
-    task.move_to_to_do()
-
-    # success log
-    info_logger.info("Task with title %s moved to to_do successfully", task.title)
-    
-    return redirect("/tasks")
-
-
-# page for moving a task to in_progress
-@app.route("/in_progress/<int:id>")
-@require_login
-def in_progress(id):
-    # get user and task
-    task = Task.find_by_id(id)
-    user = User.find_by_email(session.get("EMAIL"))
-
-    # check if the task belongs to the logged user
-    if user.id != task.user_id:
-        # error log
-        error_logger.error("Couldn't move with title %s couldn't be edited. Forbidden access", task.title)
-
-        return redirect('/tasks')
-    
-    # move the task to to_do
-    task.move_to_in_progress()
-
-    # success log
-    info_logger.info("Task with title %s moved to in_progress successfully", task.title)
-
-    return redirect("/tasks")
-
-
-# page for moving a task to completed
-@app.route("/completed/<int:id>")
-@require_login
-def completed(id):
-    # get user and task
-    task = Task.find_by_id(id)
-    user = User.find_by_email(session.get("EMAIL"))
-
-    # check if the task belongs to the logged user
-    if user.id != task.user_id:
-        # error log
-        error_logger.error("Couldn't move with title %s couldn't be edited. Forbidden access", task.title)
-        
-        return redirect('/tasks')
-
-    # move the task to to_do
-    task.move_to_completed()
-
-    # success log
-    info_logger.info("Task with title %s moved to completed successfully", task.title)
-
-    return redirect("/tasks")
-
-
-# page for moving a task to deleted
-@app.route("/deleted/<int:id>")
-@require_login
-def deleted(id):
-    # get user and task
-    task = Task.find_by_id(id)
-    user = User.find_by_email(session.get("EMAIL"))
-
-    # check if the task belongs to the logged user
-    if user.id != task.user_id:
-        # error log
-        error_logger.error("Couldn't move with title %s couldn't be edited. Forbidden access", task.title)
-        
-        return redirect('/tasks')
-
-    # move the task to to_do
-    task.move_to_deleted()
-
-    # success log
-    info_logger.info("Task with title %s moved to deleted successfully", task.title)
-
-    return redirect("/tasks")

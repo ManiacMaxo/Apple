@@ -51,25 +51,32 @@
 
         <div class="page-content">
             <div class="form">
-                <form action="/edit_task/{{ task_id }}" method="post">
+                <form action="/edit_task/{{ task.id }}" method="post">
                     {{ form.csrf_token }}
-                    <h1>Edit This Task</h1>
-                    {{ form.title }}
-                    {{ form.deadline }}
-                    {{ form.description }}
-                    <button type="submit" id="button">Save</button>
-                    <div class="state-button" id="cancel">
-                        <a href="/to_do/{{ task_id }}">Cancel Task</a>
+                    <div class="current-info">
+                        <p class="title">{{ form.title.data }}</p>
+                        <p class="description">{{ form.description.data }}</p>
+                        <p class="deadline">{{ form.deadline.data }}</p>
                     </div>
-                    <div class="state-button" id="start">
-                        <a href="/in_progress/{{ task_id }}">Start Task</a>
-                    </div>
-                    <div class="state-button" id="complete">
-                        <a href="/completed/{{ task_id }}">Complete Task</a>
-                    </div>
-                    <div class="state-button" id="delete">
-                        <a href="/deleted/{{ task_id }}">Delete Task</a>
-                    </div>
+
+                    <span>Change state of task: </span>
+                    <select name="state">
+                        {% for id, state in form.state.choices %}
+                            <option value="{{ id }}" {% if form.state == id %} selected {% endif %}>
+                                {{ state }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <ul>
+                        {% for error in form.state.errors %}
+                            <li class="error-message">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    {{ form.title(class_="input-field no-error") }}
+                    {{ form.description(class_="input-field no-error") }}
+                    {{ form.deadline(class_="input-field no-error") }}
+                    <button type="submit" id="button">Save Changes</button>
                 </form>
             </div>
         </div>

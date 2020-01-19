@@ -50,28 +50,32 @@
         </header>
 
         <div class="page-content">
-            {{ form.csrf_token }}
-            <h1>Create Your Account</h1>
-            {{ form.username }}
-            <ul>
-                {% for error in form.username.errors %}
-                    <li class="error-message">{{ error }}</li>
-                {% endfor %}
-            </ul>
-            <p>{{ form.email }}</p>
-            {{ form.password }}
-            <ul>
-                {% for error in form.password.errors %}
-                    <li class="error-message">{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {{ form.confirm }}
-            <ul>
-                {% for error in form.confirm.errors %}
-                    <li class="error-message">{{ error }}</li>
-                {% endfor %}
-            </ul>
-            <button type="submit" id="button">Continue</button>
+            <div class="form">
+                <form action="/edit_profile/{{ user.id }}" method="post">
+                    {{ form.csrf_token }}
+                    <h1>Edit Your Account</h1>
+                    {{ form.username(class_="input-field") }}
+                    <ul>
+                        {% for error in form.username.errors %}
+                            <li class="error-message">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p>{{ form.email(class_="input-field") }}</p>
+                    {{ form.password(class_="input-field") }}
+                    <ul>
+                        {% for error in form.password.errors %}
+                            <li class="error-message">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {{ form.confirm(class_="input-field") }}
+                    <ul>
+                        {% for error in form.confirm.errors %}
+                            <li class="error-message">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    <button type="submit" id="button">Continue</button>
+                </form>
+            </div>
         </div>
 
         <script

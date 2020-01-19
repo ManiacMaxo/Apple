@@ -1,6 +1,6 @@
 from flask import request
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, validators
+from wtforms import StringField, PasswordField, SelectField, validators
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import InputRequired, EqualTo, Length, NoneOf, ValidationError
 
@@ -47,4 +47,7 @@ class TaskForm(FlaskForm):
     deadline = StringField("deadline")
 
     # decription -> input type - string, optional
-    description = StringField("description") 
+    description = StringField("description")
+
+    # state -> input type - select
+    state = SelectField("state", choices = [(0, "To Do"), (1, "In Progress"), (2, "Completed"), (3, "Deleted")], coerce = int) 

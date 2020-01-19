@@ -54,9 +54,15 @@
                 <form action="/new_task" method="post">
                     {{ form.csrf_token }}
                     <h1>Create a New Task</h1>
-                    {{ form.title }}
-                    {{ form.deadline }}
-                    {{ form.description }}
+                    {{ form.title(class_="input-field no-error") }}
+                    {{ form.description(class_="input-field no-error") }}
+                    {{ form.deadline(class_="input-field no-error") }}
+                    <span>Select state of task: </span>
+                    <select name="state">
+                        {% for id, state in form.state.choices %}
+                            <option value="{{ id }}"{% if form.state == id %} selected {% endif %}>{{ state }}</option>
+                        {% endfor %}
+                    </select>
                     <button type="submit" id="button">Continue</button>
                 </form>
             </div>
