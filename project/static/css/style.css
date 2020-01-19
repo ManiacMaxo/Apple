@@ -107,29 +107,17 @@ header a {
 /* Dropdown */
 
 .dropdown {
+    right: 2vw;
     position: relative;
     display: inline-block;
 }
 
-.dropdown:after {
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    margin-top: -6px;
-    border-width: 6px 0 6px 6px;
-    border-style: solid;
-    border-color: transparent #fff;
-}
-
 .dropdown-content {
     margin-top: 15px;
-    right: 1%;
+    right: 10px;
     outline: 1px solid gray;
     display: none;
-    position: absolute;
+    position: fixed;
     min-width: 160px;
     overflow: auto;
     z-index: 1;

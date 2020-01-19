@@ -27,27 +27,25 @@
                         <span class="active">Tasks</span>
                     </li>
                     <li>
-                        <a href="/deleted">Deleted</a>
+                        <a class="navigation-bar-link" href="/deleted">
+                            Deleted
+                        </a>
                     </li>
                 </ul>
             </nav>
 
             <nav class="navigation-bar right-nav">
-                <ul>
-                    <li>
-                        <div class="dropdown">
-                            <span class="name" onclick="dropdown()">
-                                Hi, {{ user.username }}!
-                            </span>
-                            <div id="dropdown" class="dropdown-content">
-                                <a href="/edit_profile/{{ user.id }}">
-                                    Profile
-                                </a>
-                                <a href="/logout">Logout</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <div class="dropdown">
+                    <span class="name" onclick="dropdown()">
+                        Hi, {{ user.username }}!
+                    </span>
+                    <div id="dropdown" class="dropdown-content">
+                        <a href="/edit_profile/{{ user.id }}">
+                            Profile
+                        </a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
             </nav>
         </header>
 
