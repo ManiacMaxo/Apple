@@ -7,7 +7,7 @@ import os
 from user import User
 from task import Task
 from log_config import info_logger, error_logger
-from form_config import check_password, RegistrationForm, LoginForm, TaskForm
+from form_config import check_password, RegistrationForm, LoginForm, EditProfileForm, TaskForm
 
 # app config
 app = Flask(__name__)
@@ -107,15 +107,21 @@ def logout():
 
 
 # edit user info
-@app.route("/edit_profile/<int:id>")
+@app.route("/edit_profile/<int:id>", methods = ["GET", "POST"])
 @require_login
 def edit_profile(id):
     # defined in form_config.py
     # same form is being used because the information and the input boxes are the same
-    form = RegistrationForm()
+    form = EditProfileForm()
     
     # get user, whose profile will be edited
     user = User.find_by_id(id)
+
+    # get user who is trying to update their profile
+    expected_user = User.find_by_email(session.get("EMAIL"))
+
+    if user.id != expected_user.id:
+        return redirect("/tasks")
 
     # set default username and email
     # email won't be able to be changed by the user
@@ -126,18 +132,18 @@ def edit_profile(id):
     if form.validate_on_submit():
         # get user info and save it
         user.username = request.form["username"]
-        user.password = hash_password(request.form["password"])
+        user.password = User.hash_password(request.form["password"])
         user.save()
 
         # success log
-        info_logger.info("%s updated their profile successfully", request.form['email'])
+        info_logger.info("%s updated their profile successfully", user.email)
         
         return redirect("/tasks")
     
     else:
         # error log
         if request.method == "POST":
-            error_logger.error("%s failed to update their profile", request.form["email"])
+            error_logger.error("%s failed to update their profile", user.email)
     
     # template edit_profile form
     return render_template("edit_profile.html", form = form, user = user)

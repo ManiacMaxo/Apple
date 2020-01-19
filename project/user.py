@@ -15,18 +15,12 @@ class User:
         with DB() as db:
             values = (self.username, self.email, self.password)
             db.execute('''INSERT INTO users (username, email, password) VALUES (?, ?, ?)''', values)
-            return self
 
     # update user info
     def save(self):
-        values = (
-            self.username,
-            self.email,
-            self.password,
-            self.id
-        )
-        db.execute('''UPDATE posts SET username = ?, email = ?, password = ? WHERE id = ?''', values)
-        return self
+        with DB() as db:
+            values = (self.username, self.email, self.password, self.id)
+            db.execute('''UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?''', values)
 
     # return all emails registered
     @staticmethod

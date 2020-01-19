@@ -38,6 +38,12 @@ h1 {
     margin: 0 0 20px;
 }
 
+#email-no-input {
+    text-align: left;
+    color: #777;
+    border: none;
+}
+
 /* input links styling */
 
 .form a {
@@ -76,5 +82,3 @@ h1 {
     font-size: 1em;
     color: #faa95e;
 }
-
-/* dropdown menu for the task state */
