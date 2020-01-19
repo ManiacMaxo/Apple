@@ -97,7 +97,41 @@ header a {
 
 .name {
     color: #faa95e;
-    cursor: default;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    font-size: 14px;
+    line-height: 1.28577;
+    font-weight: 400;
+    letter-spacing: -0.014em;
+    background: #fff;
+}
+
+.dropdown-content a {
+    color: #06c;
+    display: block;
+    line-height: 44px;
+    padding: 0 28px;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -0.016em;
+}
+
+.dropdown-content a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.show {
+    display: block;
+}
+
+.move {
+    transform: translateX(0);
 }
 
 /* main content styling */
@@ -109,15 +143,12 @@ header a {
     height: 95vh;
     width: 100vw;
     color: #111;
-}
-
-.page-content {
     text-align: center;
 }
 
 /*  Universal buttons */
 
-button {
+#button {
     font-size: 17px;
     line-height: 1.47059;
     font-weight: 400;
@@ -136,7 +167,7 @@ button {
     margin-bottom: 20px;
 }
 
-button:hover,
-button:focus {
+#button:hover,
+#button:focus {
     background: linear-gradient(rgb(66, 169, 252), rgb(0, 120, 217));
 }

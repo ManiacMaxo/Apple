@@ -21,7 +21,6 @@
     </head>
     <body id="body">
         <header>
-            
             <nav class="navigation-bar left-nav">
                 <ul>
                     <li>
@@ -36,17 +35,20 @@
             <nav class="navigation-bar right-nav">
                 <ul>
                     <li>
-                        <span class="name">Hi, {{ user.username }}!</span>
-                    </li>
-                    <li>
-                        <a href="/edit_profile/{{ user.id }}">Profile</a>
-                    </li>
-                    <li>
-                        <a href="/logout">Logout</a>
+                        <div class="dropdown">
+                            <span class="name" onclick="dropdown()">
+                                Hi, {{ user.username }}!
+                            </span>
+                            <div id="dropdown" class="dropdown-content">
+                                <a href="/edit_profile/{{ user.id }}">
+                                    Profile
+                                </a>
+                                <a href="/logout">Logout</a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </nav>
-
         </header>
 
         <div class="page-content">
@@ -54,17 +56,17 @@
                 <h1>To Do</h1>
                 <ul class="list">
                     {% for to_do in all_to_do %}
-                    <li>
-                        <a href="/edit_task/{{ to_do.id }}">
-                            {{ to_do.title }}
-                        </a>
+                    <li onclick="location.href='/edit_task/{{ to_do.id }}'">
+                        {{ to_do.title }}
                     </li>
                     {% endfor %}
                     <li class="button-holder">
-                        <button class="button" style="max-width: 330px;">
-                            <a href="/new_task">
-                                Add Task
-                            </a>
+                        <button
+                            style="max-width: 330px;"
+                            id="button"
+                            onclick="location.href='/new_task'"
+                        >
+                            Add Task
                         </button>
                     </li>
                 </ul>
@@ -73,7 +75,7 @@
                 <h1>In Progress</h1>
                 <ul class="list">
                     {% for in_progress in all_in_progress %}
-                    <li>
+                    <li draggable="true">
                         <a href="/edit_task/{{ in_progress.id }}">
                             {{ in_progress.title }}
                         </a>
