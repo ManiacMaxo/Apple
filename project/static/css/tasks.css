@@ -1,7 +1,9 @@
 .page-content {
     top: 10vh;
     display: flex;
-    margin: auto 5%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
 }
 
 .list {
@@ -43,7 +45,12 @@
     vertical-align: top;
 }
 
+.one {
+    margin: 0 auto;
+}
+
 .add-task {
+    margin-top: 10px;
     background: linear-gradient(#42a1ec, #0070c9);
     font-weight: bold;
     cursor: pointer;

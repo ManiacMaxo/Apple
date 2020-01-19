@@ -248,23 +248,3 @@ def show_deleted():
     
     # templated user's deleted tasks
     return render_template("deleted.html", user = user, all_deleted = all_deleted)
-
-
-# page for recovering deleted tasks
-@app.route("/edit_deleted_task/<int:id>")
-@require_login
-def edit_deleted_task(id):
-    # get task and the user who has the task
-    task = Task.find_by_id(id)
-    user = User.find_by_email(session.get("EMAIL"))
-
-    # if wrong user is logged, so he can't access other users' tasks
-    if user.id != task.user_id:
-        error_logger.error("Couldn't move with title %s couldn't be edited. Forbidden access", task.title)
-        return redirect('/tasks')
-    
-    # get task information
-    info = [task.title, task.deadline, task.description]
-
-    # template edit task form
-    return render_template("edit_deleted_task.html", user = user, info = info, task_id = task.id)
