@@ -7,7 +7,7 @@ import os
 from user import User
 from task import Task
 from log_config import info_logger, error_logger
-from form_config import check_password, RegistrationForm, LoginForm, EditProfileForm, TaskForm
+from form_config import check_password, RegistrationForm, EditProfileForm, LoginForm, TaskForm
 
 # app config
 app = Flask(__name__)
@@ -117,16 +117,16 @@ def edit_profile(id):
     # get user, whose profile will be edited
     user = User.find_by_id(id)
 
+    # set default username and email
+    # email won't be able to be changed by the user
+    form.username.data = user.username
+    form.email.data = user.email
+
     # get user who is trying to update their profile
     expected_user = User.find_by_email(session.get("EMAIL"))
 
     if user.id != expected_user.id:
         return redirect("/tasks")
-
-    # set default username and email
-    # email won't be able to be changed by the user
-    form.username.data = user.username
-    form.email.data = user.email
 
     # if form is valid
     if form.validate_on_submit():

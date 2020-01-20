@@ -21,32 +21,32 @@
     </head>
     <body id="body">
         <header>
+            
             <nav class="navigation-bar left-nav">
                 <ul>
                     <li>
                         <span class="active">Tasks</span>
                     </li>
                     <li>
-                        <a class="navigation-bar-link" href="/deleted">
-                            Deleted
-                        </a>
+                        <a href="/deleted">Deleted</a>
                     </li>
                 </ul>
             </nav>
 
             <nav class="navigation-bar right-nav">
-                <div class="dropdown">
-                    <span class="name" onclick="dropdown()">
-                        Hi, {{ user.username }}!
-                    </span>
-                    <div id="dropdown" class="dropdown-content">
-                        <a href="/edit_profile/{{ user.id }}">
-                            Profile
-                        </a>
+                <ul>
+                    <li>
+                        <span class="name">Hi, {{ user.username }}!</span>
+                    </li>
+                    <li>
+                        <a href="/edit_profile/{{ user.id }}">Profile</a>
+                    </li>
+                    <li>
                         <a href="/logout">Logout</a>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </nav>
+
         </header>
 
         <div class="page-content">
@@ -54,18 +54,17 @@
                 <h1>To Do</h1>
                 <ul class="list">
                     {% for to_do in all_to_do %}
-                    <li onclick="location.href='/edit_task/{{ to_do.id }}'">
-                        {{ to_do.title }}
+                    <li>
+                        <a href="/edit_task/{{ to_do.id }}">
+                            {{ to_do.title }}
+                        </a>
                     </li>
                     {% endfor %}
                     <li class="button-holder">
-                        <button
-                            id="button"
-                            type="submit"
-                            style="max-width: 330px;"
-                            onclick="location.href='/new_task'"
-                        >
-                            Add Task
+                        <button class="button" style="max-width: 330px;">
+                            <a href="/new_task">
+                                Add Task
+                            </a>
                         </button>
                     </li>
                 </ul>

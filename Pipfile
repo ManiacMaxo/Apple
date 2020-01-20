@@ -8,7 +8,6 @@ verify_ssl = true
 [packages]
 flask = "*"
 flask-wtf = "*"
-flask-httpauth = "*"
 
 [requires]
 python_version = "3.7"

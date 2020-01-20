@@ -26,12 +26,8 @@
     font-style: italic;
 }
 
-dark-mode {
-    background: #1a1b1c;
-}
-
 body {
-    background: #fff;
+    background: #fafafa;
     font-family: "San Francisco";
     margin: 0 auto;
 }
@@ -53,10 +49,8 @@ header a:hover {
     cursor: pointer;
 }
 
-header a,
-header span {
+header a {
     align-self: center;
-    font-size: 15px;
 }
 
 /* Navigation bar styling */
@@ -103,63 +97,27 @@ header span {
 
 .name {
     color: #faa95e;
-    cursor: pointer;
-}
-
-.move {
-    transform: translateX(0);
-}
-
-/* Dropdown */
-
-.dropdown {
-    right: 2vw;
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    background: #fff;
-    margin-top: 15px;
-    right: 10px;
-    outline: 1px solid gray;
-    display: none;
-    position: fixed;
-    min-width: 160px;
-    overflow: auto;
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: #06c;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.show {
-    display: block;
+    cursor: default;
 }
 
 /* main content styling */
 
 .page-content {
     position: fixed;
+    margin: 0 auto;
     top: 5vh;
     height: 95vh;
     width: 100vw;
     color: #111;
-    z-index: -1;
+}
+
+.page-content {
+    text-align: center;
 }
 
 /*  Universal buttons */
 
-[type="submit"] {
+button {
     font-size: 17px;
     line-height: 1.47059;
     font-weight: 400;
@@ -175,9 +133,10 @@ header span {
     text-align: center;
     white-space: nowrap;
     width: 100%;
+    margin-bottom: 20px;
 }
 
-[type="submit"]:hover,
-[type="submit"]:focus {
-    background: linear-gradient(#42a9fc, #0078d9);
+button:hover,
+button:focus {
+    background: linear-gradient(rgb(66, 169, 252), rgb(0, 120, 217));
 }

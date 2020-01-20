@@ -11,7 +11,7 @@ def check_password(form, password):
     # get user trying to log in
     user = User.find_by_email(request.form["email"])
 
-    # if user exists and his password is correct
+    # if user exists and his password is correct               
     if not user or not user.verify_password(password.data):
         raise ValidationError("Incorrect Email or Password!")
 
@@ -29,14 +29,6 @@ class RegistrationForm(FlaskForm):
     # confirm -> input type - password, equal to password
     confirm = PasswordField("confirm", [EqualTo("password", message = "Passwords must match!")])
 
-# login form
-class LoginForm(FlaskForm):
-    # email -> input type - email, required
-    email = EmailField("email", [InputRequired(message = "Email is required!")])
-
-    # password -> input type - password, verification if password is correct in db
-    password = PasswordField("password", [InputRequired(message = "Password is required"), check_password])
-
 # edit profile form
 class EditProfileForm(FlaskForm):
     # username -> input type - string, required
@@ -51,6 +43,14 @@ class EditProfileForm(FlaskForm):
     # confirm -> input type - password, equal to password
     confirm = PasswordField("confirm", [EqualTo("password", message = "Passwords must match!")])
 
+# login form
+class LoginForm(FlaskForm):
+    # email -> input type - email, required
+    email = EmailField("email", [InputRequired(message = "Email is required!")])
+
+    # password -> input type - password, verification if password is correct in db
+    password = PasswordField("password", [InputRequired(message = "Password is required"), check_password])
+
 # create task form
 class TaskForm(FlaskForm):
     # title -> input type - string, required
@@ -64,4 +64,4 @@ class TaskForm(FlaskForm):
     deadline = StringField("deadline")
 
     # state -> input type - select
-    state = SelectField("state", choices = [('0', "To Do"), ('1', "In Progress"), ('2', "Completed"), ('3', "Deleted")])
+    state = SelectField("state", choices = [('0', "To Do"), ('1', "In Progress"), ('2', "Completed"), ('3', "Deleted")]) 
