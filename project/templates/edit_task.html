@@ -56,9 +56,7 @@
                 <form action="/edit_task/{{ task.id }}" method="post">
                     {{ form.csrf_token }}
                     <ul class="form-content">
-                        <li>
-                            <h1>Edit task</h1>
-                        </li>
+                        <li><h1>Edit task</h1></li>
                         <li class="change-state">
                             <span>Select state of task: </span>
                             <select name="state">
@@ -80,6 +78,9 @@
                             <button type="submit" id="button">
                                 Save Changes
                             </button>
+                        </li>
+                        <li>
+                            <button type="delete" id="button">Delete</button>
                         </li>
                     </ul>
                 </form>
