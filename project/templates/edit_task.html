@@ -34,17 +34,17 @@
             </nav>
 
             <nav class="navigation-bar right-nav">
-                <ul>
-                    <li>
-                        <span class="name">Hi, {{ user.username }}!</span>
-                    </li>
-                    <li>
-                        <a href="/edit_profile/{{ user.id }}">Profile</a>
-                    </li>
-                    <li>
+                <div class="dropdown">
+                    <span class="name" onclick="dropdown()">
+                        Hi, {{ user.username }}!
+                    </span>
+                    <div id="dropdown" class="dropdown-content">
+                        <a href="/edit_profile/{{ user.id }}">
+                            Profile
+                        </a>
                         <a href="/logout">Logout</a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </nav>
 
         </header>
@@ -58,16 +58,16 @@
                         <p class="description">{{ form.description.data }}</p>
                         <p class="deadline">{{ form.deadline.data }}</p>
                     </div>
-
-                    <span>Change state of task: </span>
-                    <!-- {{ form.state }} -->
-                    <select name="state">
-                        {% for id, state in form.state.choices %}
-                            <option value="{{ id }}" {% if form.state.default == id %} selected {% endif %}>
-                                {{ state }}
-                            </option>
-                        {% endfor %}
-                    </select>
+                    <div class="change-state">
+                        <span>Change state of task: </span>
+                        <select name="state">
+                            {% for id, state in form.state.choices %}
+                                <option value="{{ id }}" {% if form.state.default == id %} selected {% endif %}>
+                                    {{ state }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <ul>
                         {% for error in form.state.errors %}
                             <li class="error-message">{{ error }}</li>

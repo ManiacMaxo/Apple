@@ -61,3 +61,7 @@
 .add-task:hover {
     background: #0050a9;
 }
+
+.change-state {
+    margin-bottom: 2vh;
+}

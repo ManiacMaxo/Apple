@@ -6,22 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
-        <link 
-            rel="stylesheet" 
-            href="{{ url_for('static', filename='css/style.css') }}" 
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
         />
-        <link 
-            rel="stylesheet" 
-            href="{{ url_for('static', filename='css/tasks.css') }}" 
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/tasks.css') }}"
         />
-        <link 
-            rel="shortcut icon" 
+        <link
+            rel="shortcut icon"
             href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
         />
     </head>
     <body id="body">
         <header>
-
             <nav class="navigation-bar left-nav">
                 <ul>
                     <li>
@@ -34,19 +33,18 @@
             </nav>
 
             <nav class="navigation-bar right-nav">
-                <ul>
-                    <li>
-                        <span class="name">Hi, {{ user.username }}!</span>
-                    </li>
-                    <li>
-                        <a href="/edit_profile/{{ user.id }}">Profile</a>
-                    </li>
-                    <li>    
+                <div class="dropdown">
+                    <span class="name" onclick="dropdown()">
+                        Hi, {{ user.username }}!
+                    </span>
+                    <div id="dropdown" class="dropdown-content">
+                        <a href="/edit_profile/{{ user.id }}">
+                            Profile
+                        </a>
                         <a href="/logout">Logout</a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </nav>
-
         </header>
 
         <div class="page-content">
@@ -54,11 +52,11 @@
                 <h1>Deleted</h1>
                 <ul class="list">
                     {% for deleted in all_deleted %}
-                            <li>
-                                <a href="/edit_task/{{ deleted.id }}">
-                                    {{ deleted.title }}
-                                </a>
-                            </li>
+                    <li>
+                        <a href="/edit_task/{{ deleted.id }}">
+                            {{ deleted.title }}
+                        </a>
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -68,6 +66,5 @@
             type="text/javascript"
             src="{{ url_for('static', filename='main.js') }}"
         ></script>
-
     </body>
 </html>

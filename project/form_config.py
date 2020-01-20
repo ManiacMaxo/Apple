@@ -11,7 +11,7 @@ def check_password(form, password):
     # get user trying to log in
     user = User.find_by_email(request.form["email"])
 
-    # if user exists and his password is correct               
+    # if user exists and his password is correct
     if not user or not user.verify_password(password.data):
         raise ValidationError("Incorrect Email or Password!")
 
@@ -64,4 +64,4 @@ class TaskForm(FlaskForm):
     deadline = StringField("deadline")
 
     # state -> input type - select
-    state = SelectField("state", choices = [('0', "To Do"), ('1', "In Progress"), ('2', "Completed"), ('3', "Deleted")]) 
+    state = SelectField("state", choices = [('0', "To Do"), ('1', "In Progress"), ('2', "Completed"), ('3', "Deleted")])

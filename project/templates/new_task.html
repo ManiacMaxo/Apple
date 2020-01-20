@@ -6,22 +6,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Apple</title>
-        <link 
-            rel="stylesheet" 
-            href="{{ url_for('static', filename='css/style.css') }}" 
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
         />
-        <link 
-            rel="stylesheet" 
-            href="{{ url_for('static', filename='css/login.css') }}" 
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/login.css') }}"
         />
-        <link 
-            rel="shortcut icon" 
+        <link
+            rel="shortcut icon"
             href="{{ url_for('static', filename='assets/images/favicon.ico') }}"
         />
     </head>
     <body id="body">
         <header>
-            
+
             <nav class="navigation-bar left-nav">
                 <ul>
                     <li>
@@ -29,22 +29,22 @@
                     </li>
                     <li>
                         <a href="/deleted">Deleted</a>
-                    </li>    
+                    </li>
                 </ul>
             </nav>
 
             <nav class="navigation-bar right-nav">
-                <ul>
-                    <li>
-                        <span class="name">Hi, {{ user.username }}!</span>
-                    </li>
-                    <li>
-                        <a href="/edit_profile/{{ user.id }}">Profile</a>
-                    </li>
-                    <li>
+                <div class="dropdown">
+                    <span class="name" onclick="dropdown()">
+                        Hi, {{ user.username }}!
+                    </span>
+                    <div id="dropdown" class="dropdown-content">
+                        <a href="/edit_profile/{{ user.id }}">
+                            Profile
+                        </a>
                         <a href="/logout">Logout</a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </nav>
 
         </header>
@@ -57,12 +57,14 @@
                     {{ form.title(class_="input-field no-error") }}
                     {{ form.description(class_="input-field no-error") }}
                     {{ form.deadline(class_="input-field no-error") }}
-                    <span>Select state of task: </span>
-                    <select name="state">
-                        {% for id, state in form.state.choices %}
-                            <option value="{{ id }}"{% if form.state == id %} selected {% endif %}>{{ state }}</option>
-                        {% endfor %}
-                    </select>
+                    <div class="change-state">
+                        <span>Select state of task: </span>
+                        <select name="state">
+                            {% for id, state in form.state.choices %}
+                            <option value="{{ id }}" {% if form.state == id %} selected {% endif %}>{{ state }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <button type="submit" id="button">Continue</button>
                 </form>
             </div>
