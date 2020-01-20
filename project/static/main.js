@@ -27,6 +27,13 @@ window.onclick = function(event) {
     }
 }
 
+function darkMode() {
+    document.getElementsByName("body").classList.toggle("dark-mode")
+    document
+        .getElementsByClassName("dropdown-content")
+        .classList.toggle("dark-mode")
+}
+
 // puts placeholders and sets margins
 if (document.getElementsByName("username")[0] !== undefined) {
     document.getElementsByName("username")[0].placeholder = "Username"

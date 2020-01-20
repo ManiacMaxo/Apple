@@ -26,8 +26,12 @@
     font-style: italic;
 }
 
+dark-mode {
+    background: #1a1b1c;
+}
+
 body {
-    background: #fafafa;
+    background: #fff;
     font-family: "San Francisco";
     margin: 0 auto;
 }
@@ -115,6 +119,7 @@ header span {
 }
 
 .dropdown-content {
+    background: #fff;
     margin-top: 15px;
     right: 10px;
     outline: 1px solid gray;
@@ -145,12 +150,10 @@ header span {
 
 .page-content {
     position: fixed;
-    margin: 0 auto;
     top: 5vh;
     height: 95vh;
     width: 100vw;
     color: #111;
-    text-align: center;
     z-index: -1;
 }
 
@@ -176,5 +179,5 @@ header span {
 
 [type="submit"]:hover,
 [type="submit"]:focus {
-    background: linear-gradient(rgb(66, 169, 252), rgb(0, 120, 217));
+    background: linear-gradient(#42a9fc, #0078d9);
 }

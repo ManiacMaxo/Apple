@@ -12,7 +12,7 @@
         />
         <link
             rel="stylesheet"
-            href="{{ url_for('static', filename='css/login.css') }}"
+            href="{{ url_for('static', filename='css/form.css') }}"
         />
         <link
             rel="shortcut icon"
@@ -21,7 +21,6 @@
     </head>
     <body id="body">
         <header>
-
             <nav class="navigation-bar left-nav">
                 <ul>
                     <li>
@@ -46,25 +45,31 @@
                     </div>
                 </div>
             </nav>
-
         </header>
 
         <div class="page-content">
             <div class="form">
                 <form action="/new_task" method="post">
                     {{ form.csrf_token }}
-                    <h1>Create a New Task</h1>
-                    {{ form.title(class_="input-field no-error") }}
-                    {{ form.description(class_="input-field no-error") }}
-                    {{ form.deadline(class_="input-field no-error") }}
-                    <div class="change-state">
-                        <span>Select state of task: </span>
-                        <select name="state">
-                            {% for id, state in form.state.choices %}
-                            <option value="{{ id }}" {% if form.state == id %} selected {% endif %}>{{ state }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    <ul class="form-content">
+                        <li><h1>Create a New Task</h1></li>
+                        <li>{{ form.title(class_="input-field no-error") }}</li>
+                        <li>
+                            {{ form.description(class_="input-field no-error")
+                            }}
+                        </li>
+                        <li>
+                            {{ form.deadline(class_="input-field no-error") }}
+                        </li>
+                        <li>
+                            <span>Select state of task: </span>
+                            <select name="state">
+                                {% for id, state in form.state.choices %}
+                                    <option value="{{ id }}" {% if form.state == id %} selected {% endif %}>{{ state }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                    </ul>
                     <button type="submit" id="button">Continue</button>
                 </form>
             </div>
@@ -74,6 +79,5 @@
             type="text/javascript"
             src="{{ url_for('static', filename='main.js') }}"
         ></script>
-
     </body>
 </html>

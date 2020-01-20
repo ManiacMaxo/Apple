@@ -1,13 +1,16 @@
 .page-content {
-    top: 10vh;
+    top: 5vh;
     display: flex;
     justify-content: center;
+    align-self: center;
     flex-wrap: wrap;
     margin: auto;
 }
 
 .list {
-    display: inline;
+    padding: 0;
+    /* margin: 0 auto; */
+    width: auto;
     list-style: none;
 }
 
@@ -21,16 +24,28 @@
     font-size: medium;
     background: #302f2f;
     color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    max-height: max-content;
     margin: 10px auto;
     max-width: 300px;
-    max-height: max-content;
-    border-radius: 5px;
-    padding: 15px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.button-holder {
+    width: 100vw;
+    align-content: center;
+    justify-content: center;
+}
+
+.button-holder button {
+    justify-self: center;
+    margin: 10px auto;
+    max-width: 330px;
 }
 
 .split {
-    width: 30vw;
+    width: 33vw;
     height: 100vh;
 }
 
@@ -47,21 +62,31 @@
     vertical-align: top;
 }
 
-.one {
-    margin: 0 auto;
+.description {
+    font-size: 14px;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
-.add-task {
-    margin-top: 10px;
-    background: linear-gradient(#42a1ec, #0070c9);
-    font-weight: bold;
+[type="delete"] {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    background: linear-gradient(#c59169 0%, #d82020 74%);
+    border: 1px solid #d22;
+    border-radius: 4px;
+    color: #fff;
     cursor: pointer;
+    min-width: 30px;
+    padding: 4px 15px;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
 }
 
-.add-task:hover {
-    background: #0050a9;
-}
-
-.change-state {
-    margin-bottom: 2vh;
+[type="delete"]:hover,
+[type="delete"]:focus {
+    background: linear-gradient(#c59169, #d82020);
 }
