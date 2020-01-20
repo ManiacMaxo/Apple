@@ -48,14 +48,12 @@
         </header>
 
         <div class="page-content">
-            <div class="split" style="margin: 0 auto">
+            <div class="split">
                 <h1>Deleted</h1>
                 <ul class="list">
                     {% for deleted in all_deleted %}
-                    <li>
-                        <a href="/edit_task/{{ deleted.id }}">
-                            {{ deleted.title }}
-                        </a>
+                    <li onclick="location.href='/edit_task/{{ deleted.id }}'">
+                        {{ deleted.title }}
                     </li>
                     {% endfor %}
                 </ul>
