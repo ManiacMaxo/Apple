@@ -63,6 +63,7 @@
                         <button
                             id="button"
                             type="submit"
+                            style="max-width: 330px;"
                             onclick="location.href='/new_task'"
                         >
                             Add Task
@@ -74,7 +75,7 @@
                 <h1>In Progress</h1>
                 <ul class="list">
                     {% for in_progress in all_in_progress %}
-                    <li draggable="true">
+                    <li>
                         <a href="/edit_task/{{ in_progress.id }}">
                             {{ in_progress.title }}
                         </a>

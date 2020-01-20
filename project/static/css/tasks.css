@@ -9,7 +9,7 @@
 
 .list {
     padding: 0;
-    /* margin: 0 auto; */
+    margin: 0 auto;
     width: auto;
     list-style: none;
 }
@@ -33,18 +33,12 @@
 }
 
 .button-holder {
-    width: 100vw;
-    align-content: center;
-    justify-content: center;
-}
-
-.button-holder button {
-    justify-self: center;
-    margin: 10px auto;
-    max-width: 330px;
+    text-align: center;
 }
 
 .split {
+    display: inline-block;
+    margin: 0 auto;
     width: 33vw;
     height: 100vh;
 }
@@ -55,18 +49,12 @@
     font-weight: bold;
 }
 
-.left,
-.middle,
-.right {
-    display: inline-block;
-    vertical-align: top;
-}
-
 .description {
     font-size: 14px;
     width: 100%;
     padding: 15px;
     box-sizing: border-box;
+    resize: none;
 }
 
 [type="delete"] {
