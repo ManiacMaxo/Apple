@@ -1,24 +1,23 @@
 .form {
-    margin: 0 auto;
+    margin: auto;
     max-width: 360px;
     border-radius: 5px;
     padding: 45px;
     text-align: center;
 }
 
-.form ul {
+.form-content {
+    padding: 0;
+    /* margin: 0 auto; */
+    width: auto;
     list-style: none;
 }
 
-/* title styling */
-
-h1 {
-    margin: 1em 0;
+.form-content li {
+    padding-bottom: 10px;
 }
 
-/* input fields styling */
- 
-.input-field {
+.form-content li .input-field {
     font-size: 14px;
     width: 100%;
     padding: 15px;
@@ -27,11 +26,17 @@ h1 {
     border: 1px solid #d6d6d6;
 }
 
-.input-field:focus {
+.form-content li .input-field:focus {
     background: #fff;
     border-color: #0070c9;
     outline: 0;
     box-shadow: 0 0 0 3px rgba(131, 192, 253, 0.5);
+}
+
+/* title styling */
+
+h1 {
+    margin: 1em 0;
 }
 
 .no-error {
@@ -59,26 +64,7 @@ h1 {
 
 .error-message {
     color: #de071c;
-    margin-top: -10px;
+    /* margin-top: -10px; */
+    /* Don't use negative margins */
     font-weight: bold;
-}
-
-/* current info of a task */
-
-.current-info {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.current-info .title {
-    font-size: 2em;
-}
-
-.current-info .description {
-    font-size: 1em;
-}
-
-.current-info .deadline {
-    font-size: 1em;
-    color: #faa95e;
 }

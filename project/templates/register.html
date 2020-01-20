@@ -12,7 +12,7 @@
         />
         <link
             rel="stylesheet"
-            href="{{ url_for('static', filename='css/login.css') }}"
+            href="{{ url_for('static', filename='css/form.css') }}"
         />
         <link
             rel="shortcut icon"
@@ -22,7 +22,6 @@
 
     <body>
         <header>
-
             <a href="/">
                 <img
                     src="{{ url_for('static', filename='assets/images/apple.svg') }}"
@@ -39,57 +38,62 @@
                     </li>
                 </ul>
             </nav>
-            
         </header>
 
         <div class="page-content">
-            <div class="form">
-                <form action="/register" method="post">
-                    {{ form.csrf_token }}
-                    
-                    <h1>Create Your Account</h1>
-                    
-                    {{ form.username(class_="input-field") }}
-                    <ul>
-                        {% for error in form.username.errors %}
+            <form action="/register" method="post">
+                {{ form.csrf_token }}
+                <ul class="form-content">
+                    <li>
+                        <h1>Create Your Account</h1>
+                    </li>
+                    <li>
+                        {{ form.username(class_="input-field") }}
+                        <ul>
+                            {% for error in form.username.errors %}
                             <li class="error-message">{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    
-                    {{ form.email(class_="input-field") }}
-                    <ul>
-                        {% for error in form.email.errors %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li>
+                        {{ form.email(class_="input-field") }}
+                        <ul>
+                            {% for error in form.email.errors %}
                             <li class="error-message">{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    
-                    {{ form.password(class_="input-field") }}
-                    <ul>
-                        {% for error in form.password.errors %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li>
+                        {{ form.password(class_="input-field") }}
+                        <ul>
+                            {% for error in form.password.errors %}
                             <li class="error-message">{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    
-                    {{ form.confirm(class_="input-field") }}
-                    <ul>
-                        {% for error in form.confirm.errors %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li>
+                        {{ form.confirm(class_="input-field") }}
+                        <ul>
+                            {% for error in form.confirm.errors %}
                             <li class="error-message">{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    
-                    <button type="submit" id="button">Continue</button>
-                    
-                    <a href="/login">
-                        Already have an account? Sign in.
-                    </a>
-                </form>
-            </div>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="submit" id="button">Continue</button>
+                    </li>
+                    <li>
+                        <a href="/login">
+                            Already have an account? Sign in.
+                        </a>
+                    </li>
+                </ul>
+            </form>
         </div>
 
         <script
             type="text/javascript"
             src="{{ url_for('static', filename='main.js') }}"
         ></script>
-
     </body>
 </html>

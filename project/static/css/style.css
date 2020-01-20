@@ -49,8 +49,10 @@ header a:hover {
     cursor: pointer;
 }
 
-header a {
+header a,
+header span {
     align-self: center;
+    font-size: 15px;
 }
 
 /* Navigation bar styling */
@@ -149,11 +151,12 @@ header a {
     width: 100vw;
     color: #111;
     text-align: center;
+    z-index: -1;
 }
 
 /*  Universal buttons */
 
-#button {
+[type="submit"] {
     font-size: 17px;
     line-height: 1.47059;
     font-weight: 400;
@@ -169,10 +172,9 @@ header a {
     text-align: center;
     white-space: nowrap;
     width: 100%;
-    margin-bottom: 20px;
 }
 
-#button:hover,
-#button:focus {
+[type="submit"]:hover,
+[type="submit"]:focus {
     background: linear-gradient(rgb(66, 169, 252), rgb(0, 120, 217));
 }
