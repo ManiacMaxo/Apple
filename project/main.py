@@ -1,5 +1,6 @@
 # python imports
 from flask import Flask, render_template, request, redirect, url_for, session
+from datetime import datetime
 from functools import wraps
 import os
 
@@ -221,7 +222,7 @@ def edit_task(id):
     
     # get old task information
     form.title.data = task.title
-    form.deadline.data = task.deadline
+    form.deadline.data = datetime.strptime(task.deadline, "%Y-%m-%d").date()
     form.description.data = task.description
     form.state.default = task.state
 
