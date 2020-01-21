@@ -11,9 +11,9 @@
     list-style: none;
 }
 
-.list li a {
-    text-decoration: none;
+.list li {
     color: #fff;
+    cursor: pointer;
 }
 
 .list li:not(.button-holder) {
@@ -25,6 +25,10 @@
     border-radius: 5px;
     padding: 15px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.button-holder {
+    margin-top: 15px;
 }
 
 .split {

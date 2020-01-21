@@ -54,17 +54,13 @@
                 <h1>To Do</h1>
                 <ul class="list">
                     {% for to_do in all_to_do %}
-                    <li>
-                        <a href="/edit_task/{{ to_do.id }}">
-                            {{ to_do.title }}
-                        </a>
+                    <li onclick="window.location.href='/edit_task/{{ to_do.id }}'">
+                        {{ to_do.title }}
                     </li>
                     {% endfor %}
                     <li class="button-holder">
-                        <button class="button" style="max-width: 330px;">
-                            <a href="/new_task">
-                                Add Task
-                            </a>
+                        <button class="button" style="max-width: 330px;" onclick="window.location.href='/new_task'">
+                            Add Task
                         </button>
                     </li>
                 </ul>
@@ -73,10 +69,8 @@
                 <h1>In Progress</h1>
                 <ul class="list">
                     {% for in_progress in all_in_progress %}
-                    <li>
-                        <a href="/edit_task/{{ in_progress.id }}">
-                            {{ in_progress.title }}
-                        </a>
+                    <li onclick="window.location.href='/edit_task/{{ in_progress.id }}'">
+                        {{ in_progress.title }}
                     </li>
                     {% endfor %}
                 </ul>
@@ -85,10 +79,8 @@
                 <h1>Completed</h1>
                 <ul class="list">
                     {% for completed in all_completed %}
-                    <li>
-                        <a href="/edit_task/{{ completed.id }}">
-                            {{ completed.title }}
-                        </a>
+                    <li onclick="window.location.href='/edit_task/{{ completed.id }}'">
+                        {{ completed.title }}
                     </li>
                     {% endfor %}
                 </ul>
