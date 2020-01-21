@@ -57,12 +57,14 @@
                     {{ form.title(class_="input-field no-error") }}
                     {{ form.description(class_="input-field no-error") }}
                     {{ form.deadline(class_="input-field no-error") }}
-                    <span>Select state of task: </span>
-                    <select name="state">
-                        {% for id, state in form.state.choices %}
-                            <option value="{{ id }}"{% if form.state == id %} selected {% endif %}>{{ state }}</option>
-                        {% endfor %}
-                    </select>
+                    <div style="margin-bottom: 20px;">
+                        <span>Select state of task: </span>
+                        <select name="state">
+                            {% for id, state in form.state.choices %}
+                                <option value="{{ id }}"{% if form.state == id %} selected {% endif %}>{{ state }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <button type="submit" id="button">Continue</button>
                 </form>
             </div>
