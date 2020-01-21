@@ -115,6 +115,18 @@ header a {
     text-align: center;
 }
 
+.p1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: #F5B041;
+}
+
+.p2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: #F5B041;
+}
+
 /*  Universal buttons */
 
 button {
