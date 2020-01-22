@@ -115,16 +115,23 @@ header a {
     text-align: center;
 }
 
-.p1 {
+.index-content h1 {
     font-size: 3em;
     font-weight: bold;
-    color: #F5B041;
+    color: #f5b041;
 }
 
-.p2 {
+.index-content a,
+.index-content span {
     font-size: 2em;
     font-weight: bold;
-    color: #F5B041;
+    color: #f5b041;
+    text-decoration: none;
+}
+
+.index-content a:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /*  Universal buttons */

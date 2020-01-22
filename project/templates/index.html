@@ -18,7 +18,6 @@
 
     <body>
         <header>
-
             <a style="cursor: default">
                 <img
                     src="{{ url_for('static', filename='assets/images/apple.svg') }}"
@@ -35,17 +34,15 @@
                     </li>
                 </ul>
             </nav>
-
         </header>
 
         <div class="page-content">
-            <div class="paragraph p1">
-                <p>Welcome to your To-Do List!</p>
-            </div>
-            <div class="paragraph p2">
-                <p>Sign In or Create a New Account!</p>
+            <div class="index-content">
+                <h1>Welcome to your To-Do List!</h1>
+                <a href="/login">Sign in</a>
+                <span>or</span>
+                <a href="/register">Create an Account</a>
             </div>
         </div>
-        
     </body>
 </html>
