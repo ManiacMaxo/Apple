@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS tasks
 
 conn.commit()
 
+
 class DB:
     def __enter__(self):
         self.conn = sqlite3.connect(DB_NAME)

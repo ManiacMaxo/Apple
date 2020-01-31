@@ -15,6 +15,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(32)
 
 # require login config
+
+
 def require_login(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -32,7 +34,7 @@ def hello():
 
 
 # register page
-@app.route("/register", methods = ["GET", "POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     # defined in form_config.py
     form = RegistrationForm()
@@ -62,13 +64,13 @@ def register():
         # error log
         if request.method == "POST":
             error_logger.error("%s failed to register", request.form["email"])
-    
+
     # template the registration form
-    return render_template("register.html", form = form)
+    return render_template("register.html", form=form)
 
 
 # login page
-@app.route("/login", methods = ["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     # defined in form_config.py
     form = LoginForm()
@@ -89,9 +91,9 @@ def login():
         # error log
         if request.method == "POST":
             error_logger.error("%s failed to log in", request.form["email"])
-    
+
     # template the login form
-    return render_template("login.html", form = form)
+    return render_template("login.html", form=form)
 
 
 # logout page
@@ -108,13 +110,13 @@ def logout():
 
 
 # edit user info
-@app.route("/edit_profile/<int:id>", methods = ["GET", "POST"])
+@app.route("/edit_profile/<int:id>", methods=["GET", "POST"])
 @require_login
 def edit_profile(id):
     # defined in form_config.py
     # same form is being used because the information and the input boxes are the same
     form = EditProfileForm()
-    
+
     # get user, whose profile will be edited
     user = User.find_by_id(id)
 
@@ -138,16 +140,16 @@ def edit_profile(id):
 
         # success log
         info_logger.info("%s updated their profile successfully", user.email)
-        
+
         return redirect("/tasks")
-    
+
     else:
         # error log
         if request.method == "POST":
             error_logger.error("%s failed to update their profile", user.email)
-    
+
     # template edit_profile form
-    return render_template("edit_profile.html", form = form, user = user)
+    return render_template("edit_profile.html", form=form, user=user)
 
 # page listing all tasks of a user
 @app.route("/tasks")
@@ -162,12 +164,12 @@ def show_tasks():
     all_completed = Task.get_completed(user.id)
 
     # template all tasks
-    return render_template("tasks.html", 
-        user = user, 
-        all_to_do = all_to_do, 
-        all_in_progress = all_in_progress, 
-        all_completed = all_completed
-    )
+    return render_template("tasks.html",
+                           user=user,
+                           all_to_do=all_to_do,
+                           all_in_progress=all_in_progress,
+                           all_completed=all_completed
+                           )
 
 
 # page for creating new tasks
@@ -195,16 +197,17 @@ def create_new_task():
         Task(*values).create()
 
         # success log
-        info_logger.info("Task with title %s created successfully", request.form["title"])
-        
+        info_logger.info(
+            "Task with title %s created successfully", request.form["title"])
+
         return redirect("/tasks")
-    
+
     # template new task form
-    return render_template("new_task.html", user = user, form = form)
+    return render_template("new_task.html", user=user, form=form)
 
 
 # page for editing tasks
-@app.route("/edit_task/<int:id>", methods = ["GET", "POST"])
+@app.route("/edit_task/<int:id>", methods=["GET", "POST"])
 @require_login
 def edit_task(id):
     # get task and the user who has the task
@@ -217,9 +220,10 @@ def edit_task(id):
 
     # if wrong user is logged, so he can't access other users' tasks
     if user.id != task.user_id:
-        error_logger.error("Couldn't move with title %s couldn't be edited. Forbidden access", task.title)
+        error_logger.error(
+            "Couldn't move with title %s couldn't be edited. Forbidden access", task.title)
         return redirect('/tasks')
-    
+
     # get old task information
     form.title.data = task.title
     form.deadline.data = datetime.strptime(task.deadline, "%Y-%m-%d").date()
@@ -236,12 +240,13 @@ def edit_task(id):
         task.save()
 
         # success log
-        info_logger.info("Task with title %s edited successfully", request.form["title"])
-        
+        info_logger.info(
+            "Task with title %s edited successfully", request.form["title"])
+
         return redirect("/tasks")
-    
+
     # template edit task form
-    return render_template("edit_task.html", user = user, form = form, task = task)
+    return render_template("edit_task.html", user=user, form=form, task=task)
 
 
 # page for listing deleted tasks
@@ -252,6 +257,6 @@ def show_deleted():
     # they are not on the same page as to_do, in_progress and completed, because it's not neaded
     user = User.find_by_email(session.get("EMAIL"))
     all_deleted = Task.get_deleted(user.id)
-    
+
     # templated user's deleted tasks
-    return render_template("deleted.html", user = user, all_deleted = all_deleted)
+    return render_template("deleted.html", user=user, all_deleted=all_deleted)
